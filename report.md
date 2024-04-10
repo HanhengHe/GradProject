@@ -33,26 +33,26 @@ $$
 
 With the $Omega$ shown in section 1.1, the matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
 
-```
-┌─────────────────────────────────────────────────┐
- [1 1  1  1  1  1  1  1  1  1  1  1  1  1  1  1 ]
- [1 -1 1  1  1  -1 -1 -1 1  1  1  -1 -1 -1 1  -1]
- [1 1  -1 1  1  1  1  -1 -1 -1 1  1  -1 -1 -1 -1]
- [1 1  1  -1 1  1  -1 1  1  -1 -1 -1 -1 1  -1 -1]
- [1 1  1  1  -1 -1 1  1  -1 1  -1 -1 1  -1 -1 -1]
- [1 -1 1  1  1  1  -1 -1 1  1  1  1  -1 1  1  1 ]
- [1 1  1  -1 1  -1 1  1  1  -1 -1 -1 1  -1 -1 -1]
- [1 1  -1 1  1  1  -1 1  -1 -1 1  -1 -1 1  -1 -1]
- [1 1  1  1  -1 -1 1  -1 1  1  -1 -1 -1 -1 1  -1]
- [1 1  1  -1 1  1  -1 1  -1 1  -1 -1 1  -1 -1 -1]
- [1 1  1  1  -1 -1 1  1  -1 -1 1  1  -1 -1 -1 -1]
- [1 -1 1  1  1  1  1  -1 1  1  -1 -1 1  1  -1 -1]
- [1 1  -1 1  1  -1 -1 1  -1 1  -1 1  -1 -1 -1 1 ]
- [1 1  1  1  -1 1  -1 -1 1  -1 -1 -1 1  -1 -1 1 ]
- [1 1  1  -1 1  -1 -1 -1 -1 1  1  -1 -1 1  -1 1 ]
- [1 -1 1  1  1  1  1  1  -1 -1 -1 -1 -1 -1 1  1 ]
-└─────────────────────────────────────────────────┘
-```
+$$
+\begin{bmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+    1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & -1 \\
+    1 & 1  & -1 & 1  & 1  & 1  & 1  & -1 & -1 & -1 & 1  & 1  & -1 & -1 & -1 & -1 \\
+    1 & 1  & 1  & -1 & 1  & 1  & -1 & 1  & 1  & -1 & -1 & -1 & -1 & 1  & -1 & -1 \\
+    1 & 1  & 1  & 1  & -1 & -1 & 1  & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & -1 \\
+    1 & -1 & 1  & 1  & 1  & 1  & -1 & -1 & 1  & 1  & 1  & 1  & -1 & 1  & 1  & 1  \\
+    1 & 1  & 1  & -1 & 1  & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & -1 & -1 & -1 \\
+    1 & 1  & -1 & 1  & 1  & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & 1  & -1 & -1 \\
+    1 & 1  & 1  & 1  & -1 & -1 & 1  & -1 & 1  & 1  & -1 & -1 & -1 & -1 & 1  & -1 \\
+    1 & 1  & 1  & -1 & 1  & 1  & -1 & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & -1 \\
+    1 & 1  & 1  & 1  & -1 & -1 & 1  & 1  & -1 & -1 & 1  & 1  & -1 & -1 & -1 & -1 \\
+    1 & -1 & 1  & 1  & 1  & 1  & 1  & -1 & 1  & 1  & -1 & -1 & 1  & 1  & -1 & -1 \\
+    1 & 1  & -1 & 1  & 1  & -1 & -1 & 1  & -1 & 1  & -1 & 1  & -1 & -1 & -1 & 1  \\
+    1 & 1  & 1  & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & -1 & 1  & -1 & -1 & 1  \\
+    1 & 1  & 1  & -1 & 1  & -1 & -1 & -1 & -1 & 1  & 1  & -1 & -1 & 1  & -1 & 1  \\
+    1 & -1 & 1  & 1  & 1  & 1  & 1  & 1  & -1 & -1 & -1 & -1 & -1 & -1 & 1  & 1  \\
+\end{bmatrix}
+$$
 
 #### 1.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 Let $\mathcal{A}_{n - 1}^1$ denotes the sets of invertible (0, 1) matrices of order $n$. Let matrix $B \in \mathcal{A}_{n - 1}^1$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n - 1}^1$ following way:
@@ -76,26 +76,57 @@ we need an adjustment, that is $\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n} \in \
 Therefore we have the final relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-The matrix $B$ constructed is shown below:
+With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
+
+$$
+\begin{bmatrix}
+    1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
+    0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+    0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+    1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+    0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+    0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 \\
+    0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+    0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+    1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+    0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 0 \\
+    0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+    0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
+\end{bmatrix}
+$$
+
+#### 1.4 Generate and Verify Matrix $C$
+Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ ass follows:
+$$
+\begin{bmatrix}
+    s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
+    s_{21} & \dots & s_{2n_1} & 0 & \dots  & 0 \\
+    \vdots & \vdots & \vdots & \vdots & \vdots \\
+    s_{n_11} & \dots & s_{n_1n_1} & 0 & \dots  & 0 \\
+    0 & 0 \dots 0 & 1 & t_{11} & \dots & t_{1n_2} \\
+    0 & 0 \dots 0 & 0 & t_{21} & \dots & t_{2n_2} \\
+    \vdots & \vdots & \vdots & \vdots & \vdots \\
+    0 & 0 \dots 0 & 0 & t_{n_21} & \dots & t_{n_2n_2} \\
+\end{bmatrix}
+$$
+
+Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$. Let $M = C_{-1} = (m_{ij})$, $χ(C) = max_{i,j} |m_{ij}|$. Notice that $C$ is a spare $(0, 1)$ matrix, as shown in the article, $χ(C)$ has same order of magnitude as the condition number of matrix $C$, which can also be used for ill conditioned measurement. The following block shows some result of $χ(C)$ related to order $r$.
 
 ```
-┌───────────────────────────────┐
- [1 0 0 0 1 1 1 0 0 0 1 1 1 0 1]
- [0 1 0 0 0 0 1 1 1 0 0 1 1 1 1]
- [0 0 1 0 0 1 0 0 1 1 1 1 0 1 1]
- [0 0 0 1 1 0 0 1 0 1 1 0 1 1 1]
- [1 0 0 0 0 1 1 0 0 0 0 1 0 0 0]
- [0 0 1 0 1 0 0 0 1 1 1 0 1 1 1]
- [0 1 0 0 0 1 0 1 1 0 1 1 0 1 1]
- [0 0 0 1 1 0 1 0 0 1 1 1 1 0 1]
- [0 0 1 0 0 1 0 1 0 1 1 0 1 1 1]
- [0 0 0 1 1 0 0 1 1 0 0 1 1 1 1]
- [1 0 0 0 0 0 1 0 0 1 1 0 0 1 1]
- [0 1 0 0 1 1 0 1 0 1 0 1 1 1 0]
- [0 0 0 1 0 1 1 0 1 1 1 0 1 1 0]
- [0 0 1 0 1 1 1 1 0 0 1 1 0 1 0]
- [1 0 0 0 0 0 0 1 1 1 1 1 1 0 0]
-└───────────────────────────────┘
+r = 2, order of C = 4, χ(C) = 1.0
+r = 3, order of C = 11, χ(C) = 2.0
+r = 4, order of C = 26, χ(C) = 260.0
+r = 5, order of C = 57, χ(C) = 106491641548.6
 ```
 
-#### Generate Matrix $C$
+We can see that as order $r$ grows, $χ(C)$ grows rapidly.
+
+### 2 Complexity of Generating Matrix $C$
+#### 2.1 Set $\Omega$
+#### 2.2 Matrix $A$
+#### 2.3 Matrix $B$
+#### 2.4 Matrix $C$
+#### 2.5 Conclusion of Complexity
