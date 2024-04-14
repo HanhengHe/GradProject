@@ -125,8 +125,12 @@ r = 5, order of C = 57, χ(C) = 106491641548.6
 We can see that as order $r$ grows, $χ(C)$ grows rapidly.
 
 ### 2 Complexity of Generating Matrix $C$
-#### 2.1 Set $\Omega$
-#### 2.2 Matrix $A$
-#### 2.3 Matrix $B$
-#### 2.4 Matrix $C$
-#### 2.5 Conclusion of Complexity
+To generate set $\Omega$, everytime we only need to take out an generated set and insert one new element inside. Therefore, without cosidering the complexity of set insertion, the ideally time complexity is $O(n)$.
+
+To generate every entry of matrix $A \in \mathcal{A}_n^2$, a visit of three continuous element in set $\Omega$ is necessary. Let $n$ be the order of matrix $A$, without considering the complexity of set accessing, the ideally time complexity is $O(n) + O(n^2) = O(n^2)$.
+
+Generating matrix $B$ is a simple matrix operation, let $n - 1$ be the order of $B$, the time complexity is $O(n) + 2O(n^2) = O(n^2)$.
+
+In order to generate matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_r$. As shown above, for matrix $A_r$ with order $r$, the time complexity is $O(r^2)$. Therefore the time complexity generating these matrices is $\sum_{i=1}^{r}O(r^2) = O(n^3)$
+
+Therefore, when $r$ grows, the time required to generate matrix $C$ grows rapidly.
