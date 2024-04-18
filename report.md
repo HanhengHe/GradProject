@@ -55,7 +55,7 @@ $$
 $$
 
 #### 1.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
-Let $\mathcal{A}_{n - 1}^1$ denotes the sets of invertible (0, 1) matrices of order $n$. Let matrix $B \in \mathcal{A}_{n - 1}^1$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n - 1}^1$ following way:
+Let $\mathcal{A}_{n - 1}^1$ denotes the sets of invertible (0, 1) matrices of order $n$. Let matrix $B \in \mathcal{A}_{n - 1}^1$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n - 1}^1$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
 -1^T_{n-1} & 2B-J_{n-1}
@@ -72,8 +72,8 @@ $$ A_2 = \Phi(B) = \left(\begin{array}{cc}
 1^T_{n-1}
 \end{array}\right),
 $$
-we need an adjustment, that is $\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n} \in \mathcal{A}_n^2$ multiplied with $-1$.  
-Therefore we have the final relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
+we need a negative first column, which is said $\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n} \in \mathcal{A}_n^2$ multiplied with $-1$.  
+Therefore we have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
 With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
@@ -113,7 +113,7 @@ $$
 \end{bmatrix}
 $$
 
-Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$. Let $M = C_{-1} = (m_{ij})$, $χ(C) = max_{i,j} |m_{ij}|$. Notice that $C$ is a spare $(0, 1)$ matrix, as shown in the article, $χ(C)$ has same order of magnitude as the condition number of matrix $C$, which can also be used for ill conditioned measurement. The following block shows some result of $χ(C)$ related to order $r$.
+Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$. Let $M = C^{-1} = (m_{ij})$, $χ(C) = max_{i,j} |m_{ij}|$. Notice that $C$ is a spare $(0, 1)$ matrix, as shown in the article, $χ(C)$ has same order of magnitude as the condition number of matrix $C$, which can also be used for ill conditioned measurement. The following block shows some result of $χ(C)$ related to order $r$.
 
 ```
 r = 2, order of C = 4, χ(C) = 1.0
@@ -129,8 +129,10 @@ To generate set $\Omega$, everytime we only need to take out an generated set an
 
 To generate every entry of matrix $A \in \mathcal{A}_n^2$, a visit of three continuous element in set $\Omega$ is necessary. Let $n$ be the order of matrix $A$, without considering the complexity of set accessing, the ideally time complexity is $O(n) + O(n^2) = O(n^2)$.
 
-Generating matrix $B$ is a simple matrix operation, let $n - 1$ be the order of $B$, the time complexity is $O(n) + 2O(n^2) = O(n^2)$.
+Generating matrix $B$ is a simple matrix operation, let $n - 1$ be the order of $B$, the time complexity is $O((n-1)^2) + O(n^2) = O(n^2)$.
 
 In order to generate matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_r$. As shown above, for matrix $A_r$ with order $r$, the time complexity is $O(r^2)$. Therefore the time complexity generating these matrices is $\sum_{i=1}^{r}O(r^2) = O(n^3)$
 
-Therefore, when $r$ grows, the time required to generate matrix $C$ grows rapidly.
+Therefore, when $r$ grows, with an $O(n^3)$ time complexity, the time required to generate matrix $C$ grows rapidly.
+
+> TODO: proofs on generation step? Code details? 
