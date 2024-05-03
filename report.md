@@ -1,6 +1,23 @@
+### Introduction
+Let matrix $A \in \mathbb{R}^{n\times n}$ is invertible, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when right hand side is changed. If $c(A)$ is large, then $A$ is called $ill-conditioned$[[1](???)].
+
+In [[2](???)], researcher restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ and $\mathcal{A}_n^2$. With these conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity is considered in [[2](???)]:
+$$χ(A) = max_{i, j}|b_{ij}|.$$
+
+In this report, we aim to construct a $(0, 1)$ matrix $C$ satisfied $χ(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}$[[3](???)].
 ### 1 Generate Matrix $C$
 #### 1.1 Generate Set $\Omega$
-Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, $\Omega = \{\alpha_1, \alpha_2, ..., \alpha_n\}$ be a set of $n$ element such that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Let $\alpha_0=\{\varnothing\}$. The following pseudo code shows the way generating $\Omega$: 
+In order to generate matrix $A \in \mathcal{A}_n^2$, we need to generate set $\Omega$. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ be a set of $n$ element such that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering for every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existed set $\{1\}$, we insert $2, 3, ..., m$ by order.
+
+With this way of insertion, we only need to consider if the conditions are met between the last old set and the first new set, and each of the continuous new sets comes from different old sets. For all the sets come from the same old set, the conditions are automatically met.
+```
+initially Omega = {{}, {}, {1}, {2}, ..., {m}}, we take out {1}, {2}, ..., {m}, 
+and insert only one element. We need to make sure conditions are met between
+{m} and {1, _}; {1, _} and {2, _}
+```
+For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert element in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the first element of the reverted insertion list must be in $\alpha$ *(WHY???)*.
+
+The following pseudo code shows the way generating $\Omega$: 
 ```
 let Omega = {{}, {}, {1}, {2}, ..., {m}};
 for i in {1, 2, ..., m - 1}: 
@@ -22,7 +39,7 @@ Omega = {set(), set(), {1}, {2}, {3}, {4},
 ```
 
 #### 1.2 Generate Matrix $A \in \mathcal{A}_n^2$
-Let $\mathcal{A}_n^2$ denotes the sets of invertible (-1, 1) matrices of order $n$. Let matrix $A \in \mathcal{A}_n^2$, with set $\Omega = \{\alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows.
+Shown in [[1](???)], with set $\Omega$ satisfying given conditions, we can generate matrix $A \in \mathcal{A}_n^2$ such that $χ(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Let $\mathcal{A}_n^2$ denotes the sets of invertible (-1, 1) matrices of order $n$. Let matrix $A \in \mathcal{A}_n^2$, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows[[1](???)].
 For every $1 \leq i,j \leq n$:
 $$a_{ij} = \begin{cases}
     -1,\;\alpha_j\bigcap(\alpha_{i-1}\bigcup\alpha_i)=\alpha_{i-1}\Delta\alpha_{i}\;and\;|\alpha_{i-1}\Delta\alpha_{i}|=2 \\
@@ -31,10 +48,10 @@ $$a_{ij} = \begin{cases}
 \end{cases}.
 $$
 
-With the $Omega$ shown in section 1.1, the matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
+With the $\Omega$ shown in section 1.1 *(should be a link here)*, the matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
 
 $$
-\begin{bmatrix}
+\left[\begin{smallmatrix}
     1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
     1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & -1 \\
     1 & 1  & -1 & 1  & 1  & 1  & 1  & -1 & -1 & -1 & 1  & 1  & -1 & -1 & -1 & -1 \\
@@ -51,7 +68,73 @@ $$
     1 & 1  & 1  & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & -1 & 1  & -1 & -1 & 1  \\
     1 & 1  & 1  & -1 & 1  & -1 & -1 & -1 & -1 & 1  & 1  & -1 & -1 & 1  & -1 & 1  \\
     1 & -1 & 1  & 1  & 1  & 1  & 1  & 1  & -1 & -1 & -1 & -1 & -1 & -1 & 1  & 1  \\
-\end{bmatrix}
+\end{smallmatrix}\right]
+$$
+
+With the construction step above, it can be proved that $A=LQ$, where $Q$ is a $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i \bigcap \alpha_j|}$, and $Q$ is a symmetric Hadamard matrix, that is $Q^2=QQ^T=nI_n$; $L = AQ^{-1}$ is a lower triangular matrix.
+
+With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
+$$Q=
+\left[\begin{smallmatrix}
+    1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &  \\
+    1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 \\
+    1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+    1 & 1 & 1 & -1 & 1 & 1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & -1 \\
+    1 & 1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 & -1 \\
+    1 & -1 & 1 & 1 & -1 & 1 & -1 & -1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 & 1 \\
+    1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 \\
+    1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 & -1 & 1 \\
+    1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 \\
+    1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 \\
+    1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 \\
+    1 & -1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 & 1 & 1 & 1 & -1 \\
+    1 & -1 & -1 & -1 & 1 & -1 & 1 & 1 & -1 & 1 & -1 & 1 & -1 & 1 & 1 & -1 \\
+    1 & -1 & -1 & 1 & -1 & 1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & 1 & -1 \\
+    1 & 1 & -1 & -1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 1 & 1 & 1 & -1 & -1 \\
+    1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 \\
+\end{smallmatrix}\right]
+$$
+
+$$Q\times Q = 
+\left[\begin{smallmatrix}
+    16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 16&  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16&  0 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 \\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 \\
+\end{smallmatrix}\right]
+$$
+
+$$L=
+\left[\begin{smallmatrix}
+    1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.0 & 0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.5 & 0.5 & 0.0 & 0.0 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.0 & 0.5 & 0.5 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.5 & 0.5 & 0.0 & 0.0 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.5 & 0.0 & 0.0 & 0.5 & 0.0 & 0.0 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.0 & 0.5 & 0.5 & 0.0 & 0.0 & 0.0 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.5 & 0.0 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & -0.5 & 0.5 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.25 & 0.25 & 0.0 & 0.25 & 0.25 & 0.25 & 0.25 & 0.0 & 0.0 & 0.0 & -0.75 & 0.25 & 0.0 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.25 & 0.0 & 0.25 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.25 & -0.75 & 0.25 & 0.0 & 0.0 & 0.0 \\
+    0.0 & 0.0 & 0.0 & 0.25 & 0.25 & 0.25 & 0.25 & 0.0 & 0.25 & 0.25 & 0.0 & 0.0 & -0.75 & 0.25 & 0.0 & 0.0 \\
+    0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.25 & 0.0 & 0.0 & -0.75 & 0.25 & 0.0 \\
+    0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & -0.875 & 0.125\\
+\end{smallmatrix}\right]
 $$
 
 #### 1.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
@@ -79,7 +162,7 @@ $$B = \frac{1}{2}(J_{n-1}-\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
 
 $$
-\begin{bmatrix}
+\left[\begin{smallmatrix}
     1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
     0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
     0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 \\
@@ -95,13 +178,13 @@ $$
     0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
     0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
     1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
-\end{bmatrix}
+\end{smallmatrix}\right]
 $$
 
 #### 1.4 Generate and Verify Matrix $C$
 Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ ass follows:
 $$
-\begin{bmatrix}
+\left[\begin{smallmatrix}
     s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
     s_{21} & \dots & s_{2n_1} & 0 & \dots  & 0 \\
     \vdots & \vdots & \vdots & \vdots & \vdots \\
@@ -110,7 +193,7 @@ $$
     0 & 0 \dots 0 & 0 & t_{21} & \dots & t_{2n_2} \\
     \vdots & \vdots & \vdots & \vdots & \vdots \\
     0 & 0 \dots 0 & 0 & t_{n_21} & \dots & t_{n_2n_2} \\
-\end{bmatrix}
+\end{smallmatrix}\right]
 $$
 
 Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$. Let $M = C^{-1} = (m_{ij})$, $χ(C) = max_{i,j} |m_{ij}|$. Notice that $C$ is a spare $(0, 1)$ matrix, as shown in the article, $χ(C)$ has same order of magnitude as the condition number of matrix $C$, which can also be used for ill conditioned measurement. The following block shows some result of $χ(C)$ related to order $r$.
