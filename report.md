@@ -4,8 +4,8 @@ Let matrix $A \in \mathbb{R}^{n\times n}$ is invertible, with the $spectral \ no
 In [[2](???)], researcher restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ and $\mathcal{A}_n^2$. With these conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity is considered in [[2](???)]:
 $$χ(A) = max_{i, j}|b_{ij}|.$$
 
-In this report, we aim to construct a $(0, 1)$ matrix $C$ satisfied $χ(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}$[[3](???)].
-### 1 Generate Matrix $C$
+In this report, we aim to construct a ill-conditioned $(0, 1)$ matrix $C$ satisfied $χ(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}$[[3](???)].
+### 1 Generate Ill-conditioned Matrix $C$
 #### 1.1 Generate Set $\Omega$
 In order to generate matrix $A \in \mathcal{A}_n^2$, we need to generate set $\Omega$. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ be a set of $n$ element such that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering for every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existed set $\{1\}$, we insert $2, 3, ..., m$ by order.
 
@@ -138,25 +138,25 @@ $$L=
 $$
 
 #### 1.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
-Let $\mathcal{A}_{n - 1}^1$ denotes the sets of invertible (0, 1) matrices of order $n$. Let matrix $B \in \mathcal{A}_{n - 1}^1$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n - 1}^1$ in the following way:
+With matrix $A \in \mathcal{A}_n^2$ be constructed, a mapping can be implemented to generate a matrix $A \in \mathcal{A}_n^{n-1}$[[1](???)]. Let $\mathcal{A}_{n - 1}^1$ denotes the sets of invertible (0, 1) matrices of order $n$. Let matrix $B \in \mathcal{A}_{n - 1}^1$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n - 1}^1$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
 -1^T_{n-1} & 2B-J_{n-1}
 \end{array}\right).
 $$
 
-Therefore, we have the following way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{\alpha_{ij}\}\in \mathcal{A}_n^2$:
+It is obvious $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations. Therefore, we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{\alpha_{ij}\}\in \mathcal{A}_n^2$:
 
 $$B = \frac{1}{2}(J_{n-1}+\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-Notice that the $A \in \mathcal{A}_n^2$ we constructed above has it's first column as:
+Notice that in the above section, the $A \in \mathcal{A}_n^2$ we constructed has it's first column as:
 $$ A_2 = \Phi(B) = \left(\begin{array}{cc} 
 1\\
 1^T_{n-1}
 \end{array}\right),
 $$
-we need a negative first column, which is said $\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n} \in \mathcal{A}_n^2$ multiplied with $-1$.  
-Therefore we have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
+so we need to negative the first column, which means $\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n} \in \mathcal{A}_n^2$ multiplied with $-1$.  
+Finally we have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{\alpha_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
 With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
@@ -181,9 +181,11 @@ $$
 \end{smallmatrix}\right]
 $$
 
-#### 1.4 Generate and Verify Matrix $C$
-Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ ass follows:
-$$
+Shown in [[1](???)], matrix $A \in \mathcal{A}_n^2$ preserves the property $χ(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$.
+
+#### 1.4 Generate and Verify Ill-conditioned Matrix $C$
+With the sections above, it's sufficient to generate a ill-conditioned matrix $C$. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
+$$R=
 \left[\begin{smallmatrix}
     s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
     s_{21} & \dots & s_{2n_1} & 0 & \dots  & 0 \\
@@ -196,7 +198,16 @@ $$
 \end{smallmatrix}\right]
 $$
 
-Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$. Let $M = C^{-1} = (m_{ij})$, $χ(C) = max_{i,j} |m_{ij}|$. Notice that $C$ is a spare $(0, 1)$ matrix, as shown in the article, $χ(C)$ has same order of magnitude as the condition number of matrix $C$, which can also be used for ill conditioned measurement. The following block shows some result of $χ(C)$ related to order $r$.
+it's shown in [[1](???)] that $R$ has the following property:
+
+$$
+χ(S \diamond T) \geq χ(S)χ(S)
+$$
+
+Now consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r−1} \diamond A_r))...)$, with 
+$$χ(C)\geq \prod_{i=1}^rχ(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$$
+By showing the lower bound of $χ(C)$, we can see matrix $C$ is ill-conditioned controlled by $n$.
+The following block shows some result of $χ(C)$ with $C$ generate with the same method above related to order $r$.
 
 ```
 r = 2, order of C = 4, χ(C) = 1.0
