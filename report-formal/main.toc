@@ -1,0 +1,10 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Introduction}{2}{}%
+\contentsline {section}{\numberline {2}Generate Ill-conditioned Matrix $C$}{2}{}%
+\contentsline {subsection}{\numberline {2.1}Generate Set $\Omega $}{2}{}%
+\contentsline {subsection}{\numberline {2.2}Generate Matrix $A \in \mathcal {A}_n^2$}{3}{}%
+\contentsline {subsection}{\numberline {2.3}Generate Matrix $B \in \mathcal {A}_{n - 1}^1$}{4}{}%
+\contentsline {subsection}{\numberline {2.4}Generate and Verify Ill-conditioned Matrix $C$}{5}{}%
+\contentsline {section}{\numberline {3}Complexity Analysis of Generating Matrix $C$}{6}{}%
+\contentsline {section}{\numberline {4}Conclusion}{7}{}%
+\contentsline {section}{\numberline {5}References}{8}{}%
