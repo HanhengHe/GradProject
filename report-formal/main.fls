@@ -80,6 +80,18 @@ INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/appendix/appendix.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithms/algorithm.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithms/algorithm.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/float/float.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/float/float.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT c:/Program Files/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
@@ -173,9 +185,16 @@ INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
+INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr9.tfm
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
+INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ./main.bbl
+INPUT ./main.bbl
+INPUT main.bbl
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT main.aux
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
@@ -190,6 +209,7 @@ INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb

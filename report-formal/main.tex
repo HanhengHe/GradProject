@@ -2,12 +2,15 @@
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath,amssymb}
+\usepackage{amsmath,amssymb, amsfonts}
 \usepackage{parskip}
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
-
+\usepackage{appendix}
+\usepackage{algorithm,algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 % Margins
 \usepackage[top=2.5cm, left=3cm, right=3cm, bottom=3.0cm]{geometry}
@@ -29,7 +32,7 @@
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \lstset{frame=tb,
-  language=Python,
+  language=java,
   aboveskip=3mm,
   belowskip=3mm,
   showstringspaces=false,
@@ -72,17 +75,22 @@
 %%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Let matrix $A \in \mathbb{R}^{n\times n}$ is invertible, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when right hand side is changed. If $c(A)$ is large, then $A$ is called $ill-conditioned$[[1](???)].
+Let matrix $A \in \mathbb{R}^{n\times n}$ be an invertible matrix, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when right hand side is changed \cite{ALON1997133}. If $c(A)$ is large, then $A$ is called $ill-conditioned$.
 
-In [[2](???)], researcher restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$. With these conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in [[2](???)]:
+With such an importance property of $condition\ number$, ill-conditioned matrices are important
+in numerical algebra, and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they call $anti-Hadamard$ matrices, with is of interest in linear algebra, objects in combinatorics and related areas. With such conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
 \begin{align*}
-\chi(A) = max_{i, j}|b_{ij}|.
+\chi(A) = max_{i, j}|b_{ij}|\ and\ \chi(n) = max_A \chi(A),
 \end{align*}
-In this report, we aim to construct a ill-conditioned $(0, 1)$ matrix $C$ satisfied [[3](???)]
+which is bounded controlled by $n$ and some absolute positive constant $c$. Meanwhile, since matrix $A$ only contains $0$ and $1$, it also stands for a 0/1-polytope space, which is of great interest in geometry.
+
+In this report, we aim to construct an ill-conditioned $(0, 1)$ matrix $C$ satisfied
 \begin{align*}
-\chi(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))},
+\chi(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}.
 \end{align*}
-that is said, matrix $C$ has a controlled lower bound with respect to $n$. We started from generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. With a series of matrix $B$ with different shapes, we can further more concatenate a matrix $C$ with it's condition number controlled.
+That is said, matrix $C$ has a controlled lower bound of it's $condition\ number$ with respect to $n$. 
+
+As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a matrix $C$ with it's condition number controlled.
 
 
 
@@ -96,29 +104,44 @@ that is said, matrix $C$ has a controlled lower bound with respect to $n$. We st
 %   2.1 Generate Set $\Omega$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate Set $\Omega$}
-In order to generate matrix $A \in \mathcal{A}_n^2$, we need to firstly generate set $\Omega$. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ be a set of $n + 1$ element such that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering for every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existed set $\{1\}$, we insert $2, 3, ..., m$ by order.
+To start constructing matrix $C$ with a controlled $condition\ number$, the set $\Omega$ with special restriction is necessary. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with a restriction that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to be existed, the only thing considering is the implementational way create such kind of set. The following description shows and implemented way.
+
+Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Conidering for every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existed set $\{1\}$, we insert element one by one $2, 3, ..., m$ by order.
 
 With this way of insertion, we only need to consider if the conditions are met between the last old set and the first new set, and the continuous new sets come from different old sets. For all the sets come from the same old set, the conditions are automatically met.
 \begin{lstlisting}
 Initially Omega = {{}, {}, {1}, {2}, ..., {m}}, take {1}, {2}, ..., {m} out, 
-and insert only one element. Make sure conditions are met between
+and insert only one element each time. Make sure conditions are met between
     1. {m} and {1, _}; 
     2. {1, _} and {2, _}, {2, _} and {3, _}, ...
 \end{lstlisting}
-For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert element in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the first element of the reverted insertion list must be in $\alpha$ *(WHY???)*.
+
+For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert element in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list, or the first element of the reverted list must be in $\alpha$.
 
 The following pseudo code shows the way generating $\Omega$: 
-\begin{lstlisting}
-let Omega = {{}, {}, {1}, {2}, ..., {m}};
-for i in {1, 2, ..., m - 1}: 
-    let sets = sets in Omega with size equals i
-    for set in sets:
-        let avail_range = [max(set) + 1, ..., m]
-        if avail_range[0] not in Omega[-1]:
-            avail_range = avail_range.reverse()
-        for element in avail_range:
-            Omega.append({set..., element})  // set... means extend the set
-\end{lstlisting}
+
+\begin{algorithm}[H] 
+    \caption{Generate $\Omega$}
+    \label{alg:loop}
+    \begin{algorithmic}[1]
+    \Require{$m$} 
+    \Ensure{$\Omega$}
+      \State {$\Omega$ $\gets$ $\{\{\}, \{\}, \{1\}, \{2\}, ..., \{m\}\}$}
+        \For{$i \gets 1$ to $m-1$}          
+            \State {$sets$ $\gets$ $sets\ in\ \Omega\ with\ size\ equals\ i$}          
+            \For{$set$ in $sets$}     
+                \State {$\alpha$ $\gets$ [max(set) + 1, ..., m]}
+                \If{$\alpha$ not in $\Omega$[-1]}:
+                    \State {$\alpha$ $\gets$ $\alpha$.reverse()}
+                \EndIf
+                \For{$a$ in $\alpha$}     
+                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$set$..., $a$\}\}  // $a...$ means extend set $a$}
+                \EndFor
+            \EndFor
+        \EndFor
+        \State \Return {$\Omega$}
+    \end{algorithmic}
+\end{algorithm}
 
 when $m=4$, set $\Omega$ is shown below:
 \begin{lstlisting}
@@ -132,8 +155,8 @@ Omega = {set(), set(), {1}, {2}, {3}, {4},
 %%%%%%%%%%%%%%%%%
 %   2.2 Generate Matrix $A \in \mathcal{A}_n^2$
 %%%%%%%%%%%%%%%%%
-\subsection{Generate Matrix $A \in \mathcal{A}_n^2$}
-Shown in [[1](???)], with set $\Omega$ satisfying given conditions, we can generate matrix $A \in \mathcal{A}_n^2$ such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Let matrix $A \in \mathcal{A}_n^2$, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows[[1](???)].
+\subsection{Construct Matrix $A \in \mathcal{A}_n^2$ with Set $\Omega$}
+Proofed in \cite{ALON1997133}, with set $\Omega$ satisfying given conditions created, matrix $A \in \mathcal{A}_n^2$ can be generated such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Let matrix $A \in \mathcal{A}_n^2$, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows[[1](???)].
 For every $1 \leq i,j \leq n$:
 \begin{align*}
     a_{ij} = 
@@ -236,7 +259,7 @@ $$
 %%%%%%%%%%%%%%%%%
 %   2.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 %%%%%%%%%%%%%%%%%
-\subsection{Generate Matrix $B \in \mathcal{A}_{n - 1}^1$}
+\subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}
 With matrix $A \in \mathcal{A}_n^2$ be constructed, a mapping can be implemented to generate a matrix $A \in \mathcal{A}_{n-1}^{1}$[[1](???)]. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
@@ -347,28 +370,17 @@ Therefore, when $r$ grows, with an $O(n^3)$ time complexity, the time required t
 
 
 \newpage
-%%%%%%%%%%%%%%%%%
-%   References   %
-%%%%%%%%%%%%%%%%%
-\section{References}
+%%%%%%%%%%%%%%%%%%%%
+%   8 References   %
+%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{unsrt}
+\bibliography{references}
 
-[1] Hashmi, M. F., Katiyar, S., Keskar, A. G., Bokde, N. D., \& Geem, Z. W. (2020). Efficient pneumonia detection in chest xray images using deep transfer learning. \textit{Diagnostics}, 10(6), 417.
 
-[2] Palaz, D., \& Collobert, R. (2015). \textit{Analysis of CNN-based speech recognition system using raw speech as input} (No. REP\_WORK). Idiap.
-
-[3] Wang, J., Yu, L. C., Lai, K. R., \& Zhang, X. (2016, August). Dimensional sentiment analysis using a regional CNN-LSTM model. In \textit{Proceedings of the 54th annual meeting of the association for computational linguistics (volume 2: Short papers)} (pp. 225-230).
-
-[4] He, K., Zhang, X., Ren, S., \& Sun, J. (2016). Deep residual learning for image recognition. In \textit{Proceedings of the IEEE conference on computer vision and pattern recognition} (pp. 770-778).
-
-[5]Tan, M., \& Le, Q. (2019, May). Efficientnet: Rethinking model scaling for convolutional neural networks. In \textit{International conference on machine learning} (pp. 6105-6114). PMLR.
-
-[6] Li, L., Tan, Z., \& Han, X. (2022). An Improved EfficientNet Model and its Applications in Pneumonia Image Classification. \textit{Journal of Engineering Science \& Technology Review}, 15(6).
-
-[7] Szegedy, C., Liu, W., Jia, Y., Sermanet, P., Reed, S., Anguelov, D., ... \& Rabinovich, A. (2015). Going deeper with convolutions. In \textit{Proceedings of the IEEE conference on computer vision and pattern recognition} (pp. 1-9).
-
-[8] Zhang, G., Hu, M. Y., Patuwo, B. E., \& Indro, D. C. (1999). Artificial neural networks in bankruptcy prediction: General framework and cross-validation analysis. \textit{European journal of operational research}, 116(1), 16-32.
-
-[9] Kandel, I., \& Castelli, M. (2020). The effect of batch size on the generalizability of the convolutional neural networks on a histopathology dataset. \textit{ICT express}, 6(4), 312-315.
+\newpage
+\appendix
+\subsection*{Code}
+*Add notebook here*
 
 
 \end{document}

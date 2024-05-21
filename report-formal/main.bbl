@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{ALON1997133}
+Noga Alon and Văn~H Vũ.
+\newblock Anti-hadamard matrices, coin weighing, threshold gates, and indecomposable hypergraphs.
+\newblock {\em Journal of Combinatorial Theory, Series A}, 79(1):133--160, 1997.
+
+\bibitem{doi:10.1137/1018113}
+G.~H. Golub and J.~H. Wilkinson.
+\newblock Ill-conditioned eigensystems and the computation of the jordan canonical form.
+\newblock {\em SIAM Review}, 18(4):578--619, 1976.
+
+\bibitem{wilkinson1972note}
+JH~Wilkinson.
+\newblock Note on matrices with a very ill-conditioned eigenproblem.
+\newblock {\em Numerische Mathematik}, 19:176--178, 1972.
+
+\bibitem{neumaier1998solving}
+Arnold Neumaier.
+\newblock Solving ill-conditioned and singular linear systems: A tutorial on regularization.
+\newblock {\em SIAM review}, 40(3):636--666, 1998.
+
+\bibitem{GRAHAM1984113}
+R.L. Graham and N.J.A. Sloane.
+\newblock Anti-hadamard matrices.
+\newblock {\em Linear Algebra and its Applications}, 62:113--137, 1984.
+
+\bibitem{doi:10.1137/S0895480192235878}
+Johan H\r{a}stad.
+\newblock On the size of weights for threshold gates.
+\newblock {\em SIAM Journal on Discrete Mathematics}, 7(3):484--492, 1994.
+
+\end{thebibliography}
