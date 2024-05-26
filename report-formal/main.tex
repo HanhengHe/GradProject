@@ -156,7 +156,7 @@ Omega = {set(), set(), {1}, {2}, {3}, {4},
 %   2.2 Generate Matrix $A \in \mathcal{A}_n^2$
 %%%%%%%%%%%%%%%%%
 \subsection{Construct Matrix $A \in \mathcal{A}_n^2$ with Set $\Omega$}
-Proofed in \cite{ALON1997133}, with set $\Omega$ satisfying given conditions created, matrix $A \in \mathcal{A}_n^2$ can be generated such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Let matrix $A \in \mathcal{A}_n^2$, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows[[1](???)].
+Shown in \cite{ALON1997133}, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$:\\
 For every $1 \leq i,j \leq n$:
 \begin{align*}
     a_{ij} = 
@@ -167,7 +167,7 @@ For every $1 \leq i,j \leq n$:
     \end{cases}.
 \end{align*}
 
-With the $\Omega$ shown in section 1.1 *(should be a link here)*, the matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
+With the $\Omega$ shown in section 2.1, matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
 
 $$A = 
 \left[\begin{smallmatrix}
@@ -187,10 +187,11 @@ $$A =
     1 & 1  & 1  & 1  & -1 & 1  & -1 & -1 & 1  & -1 & -1 & -1 & 1  & -1 & -1 & 1  \\
     1 & 1  & 1  & -1 & 1  & -1 & -1 & -1 & -1 & 1  & 1  & -1 & -1 & 1  & -1 & 1  \\
     1 & -1 & 1  & 1  & 1  & 1  & 1  & 1  & -1 & -1 & -1 & -1 & -1 & -1 & 1  & 1  \\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right].
 $$
 
-With the construction step above, it can be proved that $A=LQ$, where $Q$ is a $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i \bigcap \alpha_j|}$, and $Q$ is a symmetric Hadamard matrix, that is $Q^2=QQ^T=nI_n$; $L = AQ^{-1}$ is a lower triangular matrix.
+In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\bigcap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we build matrix $A$ and show
+$L = AQ^{-1}$ is a lower triangular matrix.
 
 With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
 $$Q=
@@ -211,7 +212,7 @@ $$Q=
     1 & -1 & -1 & 1 & -1 & 1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & 1 & -1 \\
     1 & 1 & -1 & -1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 1 & 1 & 1 & -1 & -1 \\
     1 & -1 & -1 & -1 & -1 & 1 & 1 & 1 & 1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 \\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right],
 $$
 
 $$Q\times Q = 
@@ -232,7 +233,7 @@ $$Q\times Q =
     0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 & 0 \\
     0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 & 0 \\
     0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 16 \\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right],
 $$
 
 $$L=
@@ -253,21 +254,21 @@ $$L=
     0.0 & 0.0 & 0.0 & 0.25 & 0.25 & 0.25 & 0.25 & 0.0 & 0.25 & 0.25 & 0.0 & 0.0 & -0.75 & 0.25 & 0.0 & 0.0 \\
     0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.0 & 0.25 & 0.25 & 0.0 & 0.0 & -0.75 & 0.25 & 0.0 \\
     0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & 0.125 & -0.875 & 0.125\\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right].
 $$
 
 %%%%%%%%%%%%%%%%%
 %   2.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 %%%%%%%%%%%%%%%%%
 \subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}
-With matrix $A \in \mathcal{A}_n^2$ be constructed, a mapping can be implemented to generate a matrix $A \in \mathcal{A}_{n-1}^{1}$[[1](???)]. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
+With matrix $A \in \mathcal{A}_n^2$, $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$ being constructed, a mapping can be implemented to generate a matrix $A \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
 -1^T_{n-1} & 2B-J_{n-1}
 \end{array}\right).
 $$
 
-It is obvious $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations. Therefore, we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
+We can see that $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations. Therefore, we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
 
 $$B = \frac{1}{2}(J_{n-1}+\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
@@ -277,12 +278,12 @@ $$ \left(\begin{array}{cc}
 1^T_{n-1}
 \end{array}\right),
 $$
-so we need to negative the first column, so finally we have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
+so we need to negative the first column, and have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
 With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
 
-$$
+$$B=
 \left[\begin{smallmatrix}
     1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
     0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
@@ -299,16 +300,16 @@ $$
     0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
     0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
     1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right].
 $$
 
-Shown in [[1](???)], matrix $B \in \mathcal{A}_n^2$ preserves the property $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$.
+Shown in \cite{ALON1997133}, matrix $B$ preserves the ill-conditions property, that is $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$.
 
 %%%%%%%%%%%%%%%%%
 %   2.4 Generate and Verify Ill-conditioned Matrix $C$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate and Verify Ill-conditioned Matrix $C$}
-With the sections above, it's sufficient to generate an ill-conditioned matrix $C$. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
+Before constructing matrix $C$, \cite{ALON1997133} shows a way concatenating that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
 $$R=
 \left[\begin{smallmatrix}
     s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
@@ -319,19 +320,20 @@ $$R=
     0 & 0 \dots 0 & 0 & t_{21} & \dots & t_{2n_2} \\
     \vdots & \vdots & \vdots & \vdots & \vdots \\
     0 & 0 \dots 0 & 0 & t_{n_21} & \dots & t_{n_2n_2} \\
-\end{smallmatrix}\right]
+\end{smallmatrix}\right].
 $$
 
-it's shown in [[1](???)] that $R$ has the following property:
+It's shown that $R$ has the following property:
 
 \begin{align*}
-\chi(S \diamond T) \geq \chi(S)\chi(S)
+\chi(S \diamond T) \geq \chi(S)\chi(S),
 \end{align*}
 
-Now consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, with[[1](???)]
+Which shows an increased $condition\ number$ leading to construct the ill-conditioned $C$. Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$, with the definition of the operator $\diamond$, we have the following conclusion that
 $$\chi(C)\geq \prod_{i=1}^r\chi(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$$
-By showing the lower bound of $\chi(C)$, we can see matrix $C$ is ill-conditioned with respect with $n$.
-The following block shows some result of $\chi(C)$ with $C$ generate in the same method above related to order $r$.
+This conclusion describes the lower bound of $\chi(C)$, and we can say matrix $C$ is ill-conditioned with respect to $n$.
+
+Since the concatenation rapidly enlarge the order of the matrix, we could not show the matrix $C$ constructed with all the steps described in pervious sections. Instead, we show some result of $\chi(C)$ with $C$ generate in the same steps above. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the biggest order of all the $\{0, 1\}$ matrices $A$:
 
 \begin{lstlisting}[escapeinside={(*}{*)}]
 r = 2, order of C = 4, (*$\chi$*)(C) = 1.0
@@ -340,12 +342,14 @@ r = 4, order of C = 26, (*$\chi$*)(C) = 260.0
 r = 5, order of C = 57, (*$\chi$*)(C) = 106491641548.6
 \end{lstlisting}
 
-We can see that as order $r$ grows, $\chi(C)$ grows rapidly.
+With the result above, We can clearly observe that as order $r$ grows, $\chi(C)$ may grow rapidly to infinity.
 
 %%%%%%%%%%%%%%%%%
 %   3 Complexity of Generating Matrix $C$
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
+In this section we discuss the complexity of constructing matrix $C$, therefore showing the reason not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
+
 To generate set $\Omega$, everytime we only need to take out an generated set and insert one new element inside. Therefore, without cosidering the complexity of set insertion, the ideally time complexity is $O(n)$.
 
 To generate every entry of matrix $A \in \mathcal{A}_n^2$, a visit of three continuous element in set $\Omega$ is necessary. Let $n$ be the order of matrix $A$, without considering the complexity of set accessing, the total ideally time complexity is $O(n) + O(n^2) = O(n^2)$.
@@ -358,7 +362,6 @@ Therefore, when $r$ grows, with an $O(n^3)$ time complexity, the time required t
 
 
 
-\newpage
 %%%%%%%%%%%%%%%%%
 %   4 Conclusion   %
 %%%%%%%%%%%%%%%%%
