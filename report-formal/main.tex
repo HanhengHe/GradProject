@@ -128,14 +128,14 @@ The following pseudo code shows the way generating $\Omega$:
     \Ensure{$\Omega$}
       \State {$\Omega$ $\gets$ $\{\{\}, \{\}, \{1\}, \{2\}, ..., \{m\}\}$}
         \For{$i \gets 1$ to $m-1$}          
-            \State {$sets$ $\gets$ $sets\ in\ \Omega\ with\ size\ equals\ i$}          
-            \For{$set$ in $sets$}     
-                \State {$\alpha$ $\gets$ [max(set) + 1, ..., m]}
+            \State {$\Phi$ $\gets$ $sets\ in\ \Omega\ with\ size\ equals\ i$}          
+            \For{$\phi$ in $\Phi$}     
+                \State {$\alpha$ $\gets$ [max($\phi$) + 1, ..., m]}
                 \If{$\alpha$ not in $\Omega$[-1]}:
                     \State {$\alpha$ $\gets$ $\alpha$.reverse()}
                 \EndIf
                 \For{$a$ in $\alpha$}     
-                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$set$..., $a$\}\}  // $a...$ means extend set $a$}
+                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{$\phi...$ means extend set $\phi$}
                 \EndFor
             \EndFor
         \EndFor
@@ -348,10 +348,37 @@ With the result above, We can clearly observe that as order $r$ grows, $\chi(C)$
 %   3 Complexity of Generating Matrix $C$
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
-In this section we discuss the complexity of constructing matrix $C$, therefore showing the reason not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
+\subsection{Time Complexity of Creating $\Omega$}
+In this section we discuss the complexity of constructing matrix $C$, and further more show the reason not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
 
-To generate set $\Omega$, everytime we only need to take out an generated set and insert one new element inside. Therefore, without cosidering the complexity of set insertion, the ideally time complexity is $O(n)$.
+In order to generate set $\Omega$, everytime we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element greater than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideally time complexity is $O(n)$, which cannot be reach but will be used.
 
+A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignment, set insertion, set reversion operation and an extra for-loop are neglected, a rough time complexity estimation would be $O(n^2)$.
+
+\begin{algorithm}[H] 
+    \caption{Time Complexity of Generating $\Omega$}
+    \label{alg:loop_tc}
+    \begin{algorithmic}[1]
+    \Require{$m$} 
+    \Ensure{$\Omega$}
+      \State {$\Omega$ $\gets$ $\{\{\}, \{\}, \{1\}, \{2\}, ..., \{m\}\}$}
+        \For{$i \gets 1$ to $m-1$} \Comment{$O(m)$ loop}
+            \State {$\Phi$ $\gets$ $sets\ in\ \Omega\ with\ size\ equals\ i$} \Comment{$O(1)$ with special data structure}         
+            \For{$\phi$ in $\Phi$} \Comment{${m \choose i} \rightarrow$ at least $O(m)$}
+                \State {$\alpha$ $\gets$ [max($\phi$) + 1, ..., m]} \Comment{the max(...) of an ordered set is $O(1)$}
+                \If{$\alpha$ not in $\Omega$[-1]}:
+                    \State {$\alpha$ $\gets$ $\alpha$.reverse()} \Comment{a set reversion operation}
+                \EndIf
+                \For{$a$ in $\alpha$} \Comment{$m - $max$(\phi) - 1$, more than $O(1)$}
+                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{a set insertion operation}
+                \EndFor
+            \EndFor
+        \EndFor
+        \State \Return {$\Omega$}
+    \end{algorithmic}
+\end{algorithm}
+
+\subsection{Time Complexity of Creating $\{0, 1\}$ Matrix $C$}
 To generate every entry of matrix $A \in \mathcal{A}_n^2$, a visit of three continuous element in set $\Omega$ is necessary. Let $n$ be the order of matrix $A$, without considering the complexity of set accessing, the total ideally time complexity is $O(n) + O(n^2) = O(n^2)$.
 
 Generating matrix $B$ is a simple matrix operation, let $n - 1$ be the order of $B$, the time complexity is $O((n-1)^2) + O(n^2) = O(n^2)$.
