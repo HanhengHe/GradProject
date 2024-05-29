@@ -353,7 +353,7 @@ In this section we discuss the complexity of constructing matrix $C$, and furthe
 
 In order to generate set $\Omega$, everytime we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element greater than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideally time complexity is $O(n)$, which cannot be reach but will be used.
 
-A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignment, set insertion, set reversion operation and an extra for-loop are neglected, a rough time complexity estimation would be $O(n^2)$.
+A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignment, set insertion, set reversion operation and an extra for-loop are neglected, a rough time complexity estimation would be $O(m^2)$.
 
 \begin{algorithm}[H] 
     \caption{Time Complexity of Generating $\Omega$}
@@ -379,15 +379,21 @@ A more detailed complexity analysis is shown below. In the implementation, there
 \end{algorithm}
 
 \subsection{Time Complexity of Creating $\{0, 1\}$ Matrix $C$}
-To generate every entry of matrix $A \in \mathcal{A}_n^2$, a visit of three continuous element in set $\Omega$ is necessary. Let $n$ be the order of matrix $A$, without considering the complexity of set accessing, the total ideally time complexity is $O(n) + O(n^2) = O(n^2)$.
+To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ is necessary. Let $m$ stands for the size of set  $\Omega$, $n=2^m$ be the order of matrix $A$, without considering the complexity of set indexing, the union operation and the intersection operation needed in every single calculation, the ideally time complexity of construct a matrix $A \in \mathcal{A}_n^2$ is at least $O(m) + O(2^{2m}) = O(2^m)$.
 
-Generating matrix $B$ is a simple matrix operation, let $n - 1$ be the order of $B$, the time complexity is $O((n-1)^2) + O(n^2) = O(n^2)$.
+Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operation. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
 
-In order to generate matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_r$. As shown above, for matrix $A_r$ with order $r$, the time complexity is $O(r^2)$. Therefore the time complexity generating these matrices is $\sum_{i=1}^{n}O(r^2) = O(n^3)$
+To splice out matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$. With matrix $A_r$ with order $r$ having $O(r^2)$ time complexity, to create all these matrices, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$. An extra time complexity of matrix assignment is also needed, which is ($\sum_{i=0}^{m}O(2^m - 1))^2 = O(m^22^{2m})$ or $O(2^m)$
 
-Therefore, when $r$ grows, with an $O(n^3)$ time complexity, the time required to generate matrix $C$ grows rapidly.
+Remind that we only consider parts of the essential operation, most of the internal operation including indexing, union, intersection and more. Therefore, to create the $\{0, 1\}$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
 
+The following figure \ref{costoftime} shows the relation between time of generating matrix $C$ and size controller $m$. An exponential growth is shown as expected.
 
+\begin{figure}[htp]
+    \centering
+    \includegraphics{fig/output.png}
+    \caption{Cost of time in milliseconds related to m}\label{costoftime}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%
 %   4 Conclusion   %

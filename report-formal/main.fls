@@ -192,6 +192,11 @@ INPUT c:/Program Files/texlive/2024/texmf-dist/tex/latex/base/omscmr.fd
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+INPUT ./fig/output.png
+INPUT ./fig/output.png
+INPUT ./fig/output.png
+INPUT ./fig/output.png
+INPUT ./fig/output.png
 INPUT ./main.bbl
 INPUT ./main.bbl
 INPUT main.bbl
