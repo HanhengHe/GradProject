@@ -9,6 +9,9 @@
 \usepackage{color}
 \usepackage{appendix}
 \usepackage{algorithm,algpseudocode}
+\usepackage[export]{adjustbox}
+\usepackage{subcaption}
+\usepackage{caption}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
@@ -54,7 +57,7 @@
 %     Title     %
 %%%%%%%%%%%%%%%%%
 \title{\textbf{ Graduation Project Report }}
-\author{Spring 2024 \\ \\ Hanheng He (400485161) \\ \\ Course Instructor: Dr. Antoine Deza }
+\author{Spring 2024 \\ \\ Hanheng He (400485161) \\ \\ Project Instructor: Dr. Antoine Deza }
 \date{April 10, 2024}
 
 
@@ -65,6 +68,12 @@
 \fancyhead[L]{\text{Graduation Project Report}}
 \fancyhead[R]{\text{HH}}
 
+%%%%%%%%%%%%%%%%
+%   Abstract   %
+%%%%%%%%%%%%%%%%
+\begin{abstract}
+    This report describe the condition number of a matrix, and an equivalent quantities to the condition number when entries of matrix is specified as $\{0, 1\}$ or $\{-1, 1\}$. Base on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when it's order grows. Further more, this report discusss the complexity of creating such matrix, proving and showing with an experiment of the exponential time complexity.
+\end{abstract}
 \tableofcontents
 
 
@@ -399,15 +408,17 @@ The following figure \ref{costoftime} shows the relation between time of generat
 %   4 Conclusion   %
 %%%%%%%%%%%%%%%%%
 \section{Conclusion}
+This report shows the $\{0, 1\}$ matrix $C$ created with speacific steps to ensure it's equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it's is expensive to create when the order of $C$ grows.
 
-
-
-
-
+%%%%%%%%%%%%%%%%%
+%   5 Acknowledgements   %
+%%%%%%%%%%%%%%%%%
+\section{Acknowledgements}
+I would like to thank Antoine Deza, my supervisor, for many helpful discussions and advice. Also I would like to thank Zhongyuan Liu and Yijun Ma for many helpful suggestions.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%
-%   8 References   %
+%   6 References   %
 %%%%%%%%%%%%%%%%%%%%
 \bibliographystyle{unsrt}
 \bibliography{references}
@@ -415,13 +426,10 @@ The following figure \ref{costoftime} shows the relation between time of generat
 
 \newpage
 \appendix
-\subsection*{Code}
-*Add notebook here*
-
+\subsection*{Code of Implementation}
+\adjincludegraphics[width=15cm,trim={0 {.763\height} 0 0},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.504\height} 0 {.237\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.245\height} 0 {.496\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.0\height} 0 {.755\height}},clip]{fig/codeofimp.png}\\
 
 \end{document}
-
-
-
-
-
