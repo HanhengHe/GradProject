@@ -72,7 +72,7 @@
 %   Abstract   %
 %%%%%%%%%%%%%%%%
 \begin{abstract}
-    This report describe the condition number of a matrix, and an equivalent quantities to the condition number when entries of matrix is specified as $\{0, 1\}$ or $\{-1, 1\}$. Base on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when it's order grows. Further more, this report discusss the complexity of creating such matrix, proving and showing with an experiment of the exponential time complexity.
+    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix is specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
 \end{abstract}
 \tableofcontents
 
@@ -84,9 +84,9 @@
 %%%%%%%%%%%%%%%%%
 \section{Introduction}
 
-Let matrix $A \in \mathbb{R}^{n\times n}$ be an invertible matrix, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when right hand side is changed \cite{ALON1997133}. If $c(A)$ is large, then $A$ is called $ill-conditioned$.
+Let matrix $A \in \mathbb{R}^{n\times n}$ be an invertible matrix, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when the right-hand side is changed \cite{ALON1997133}. If $c(A)$ is large, then $A$ is called $ill-conditioned$.
 
-With such an importance property of $condition\ number$, ill-conditioned matrices are important
+With such an important property of $condition\ number$, ill-conditioned matrices are important
 in numerical algebra, and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they call $anti-Hadamard$ matrices, with is of interest in linear algebra, objects in combinatorics and related areas. With such conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
 \begin{align*}
 \chi(A) = max_{i, j}|b_{ij}|\ and\ \chi(n) = max_A \chi(A),
@@ -99,7 +99,7 @@ In this report, we aim to construct an ill-conditioned $(0, 1)$ matrix $C$ satis
 \end{align*}
 That is said, matrix $C$ has a controlled lower bound of it's $condition\ number$ with respect to $n$. 
 
-As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a matrix $C$ with it's condition number controlled.
+As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a matrix $C$ with its condition number controlled.
 
 
 
@@ -115,19 +115,19 @@ As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mat
 \subsection{Generate Set $\Omega$}
 To start constructing matrix $C$ with a controlled $condition\ number$, the set $\Omega$ with special restriction is necessary. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with a restriction that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to be existed, the only thing considering is the implementational way create such kind of set. The following description shows and implemented way.
 
-Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Conidering for every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existed set $\{1\}$, we insert element one by one $2, 3, ..., m$ by order.
+Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering that every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existing set $\{1\}$, we insert elements one by one $2, 3, ..., m$ by order.
 
-With this way of insertion, we only need to consider if the conditions are met between the last old set and the first new set, and the continuous new sets come from different old sets. For all the sets come from the same old set, the conditions are automatically met.
+With this way of insertion, we only need to consider if the conditions are satisfied between the last old set and the first new set, and if the continuous new sets come from different old sets. For all the sets that come from the same old set, the conditions are satisfied automatically.
 \begin{lstlisting}
 Initially Omega = {{}, {}, {1}, {2}, ..., {m}}, take {1}, {2}, ..., {m} out, 
-and insert only one element each time. Make sure conditions are met between
+and insert only one element each time. Make sure conditions are satisfied between
     1. {m} and {1, _}; 
     2. {1, _} and {2, _}, {2, _} and {3, _}, ...
 \end{lstlisting}
 
-For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert element in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list, or the first element of the reverted list must be in $\alpha$.
+For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert elements in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list or the first element of the reverted list must be in $\alpha$.
 
-The following pseudo code shows the way generating $\Omega$: 
+The following pseudo-code shows the way to generate $\Omega$: 
 
 \begin{algorithm}[H] 
     \caption{Generate $\Omega$}
@@ -199,8 +199,7 @@ $$A =
 \end{smallmatrix}\right].
 $$
 
-In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\bigcap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we build matrix $A$ and show
-$L = AQ^{-1}$ is a lower triangular matrix.
+In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\bigcap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we build a matrix $A$ and show $L = AQ^{-1}$ is a lower triangular matrix.
 
 With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
 $$Q=
@@ -285,9 +284,9 @@ Notice that in the above section, the $A \in \mathcal{A}_n^2$ we constructed has
 $$ \left(\begin{array}{cc} 
 1\\
 1^T_{n-1}
-\end{array}\right),
+\end{array}\right).
 $$
-so we need to negative the first column, and have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
+Therefore,  we need to negative the first column and have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
 With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
@@ -318,7 +317,7 @@ Shown in \cite{ALON1997133}, matrix $B$ preserves the ill-conditions property, t
 %   2.4 Generate and Verify Ill-conditioned Matrix $C$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate and Verify Ill-conditioned Matrix $C$}
-Before constructing matrix $C$, \cite{ALON1997133} shows a way concatenating that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
+Before constructing matrix $C$, \cite{ALON1997133} shows a way of concatenating that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
 $$R=
 \left[\begin{smallmatrix}
     s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
@@ -338,11 +337,11 @@ It's shown that $R$ has the following property:
 \chi(S \diamond T) \geq \chi(S)\chi(S),
 \end{align*}
 
-Which shows an increased $condition\ number$ leading to construct the ill-conditioned $C$. Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$, with the definition of the operator $\diamond$, we have the following conclusion that
+Which shows an increased $condition\ number$ leading to the construction of the ill-conditioned $C$. Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$, with the definition of the operator $\diamond$, we have the following conclusion that
 $$\chi(C)\geq \prod_{i=1}^r\chi(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$$
-This conclusion describes the lower bound of $\chi(C)$, and we can say matrix $C$ is ill-conditioned with respect to $n$.
+This conclusion describes the lower bound of $\chi(C)$, and we can say matrix $C$ is ill-conditioned concerning $n$.
 
-Since the concatenation rapidly enlarge the order of the matrix, we could not show the matrix $C$ constructed with all the steps described in pervious sections. Instead, we show some result of $\chi(C)$ with $C$ generate in the same steps above. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the biggest order of all the $\{0, 1\}$ matrices $A$:
+Since the concatenation rapidly enlarges the order of the matrix, we could not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show some results of $\chi(C)$ with $C$ generated in the same steps above. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the biggest order of all the $\{0, 1\}$ matrices $A$:
 
 \begin{lstlisting}[escapeinside={(*}{*)}]
 r = 2, order of C = 4, (*$\chi$*)(C) = 1.0
@@ -351,18 +350,18 @@ r = 4, order of C = 26, (*$\chi$*)(C) = 260.0
 r = 5, order of C = 57, (*$\chi$*)(C) = 106491641548.6
 \end{lstlisting}
 
-With the result above, We can clearly observe that as order $r$ grows, $\chi(C)$ may grow rapidly to infinity.
+With the result above, We can observe that as order $r$ grows, $\chi(C)$ grows rapidly to infinity.
 
 %%%%%%%%%%%%%%%%%
 %   3 Complexity of Generating Matrix $C$
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
 \subsection{Time Complexity of Creating $\Omega$}
-In this section we discuss the complexity of constructing matrix $C$, and further more show the reason not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
+In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
 
-In order to generate set $\Omega$, everytime we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element greater than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideally time complexity is $O(n)$, which cannot be reach but will be used.
+To generate set $\Omega$, every time we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element larger than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideal time complexity is $O(n)$, which cannot be reached but is still used.
 
-A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignment, set insertion, set reversion operation and an extra for-loop are neglected, a rough time complexity estimation would be $O(m^2)$.
+A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignments, set insertion, set reversion operation, and an extra for-loop neglected, a rough time complexity estimation would be $O(m^2)$.
 
 \begin{algorithm}[H] 
     \caption{Time Complexity of Generating $\Omega$}
@@ -388,15 +387,15 @@ A more detailed complexity analysis is shown below. In the implementation, there
 \end{algorithm}
 
 \subsection{Time Complexity of Creating $\{0, 1\}$ Matrix $C$}
-To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ is necessary. Let $m$ stands for the size of set  $\Omega$, $n=2^m$ be the order of matrix $A$, without considering the complexity of set indexing, the union operation and the intersection operation needed in every single calculation, the ideally time complexity of construct a matrix $A \in \mathcal{A}_n^2$ is at least $O(m) + O(2^{2m}) = O(2^m)$.
+To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set  $\Omega$, $n=2^m$ be the order of matrix $A$, without considering the complexity of set indexing, the union operation, and the intersection operation needed in every single calculation, the ideal time complexity of construct a matrix $A \in \mathcal{A}_n^2$ is at least $O(m) + O(2^{2m}) = O(2^m)$.
 
 Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operation. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
 
 To splice out matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$. With matrix $A_r$ with order $r$ having $O(r^2)$ time complexity, to create all these matrices, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$. An extra time complexity of matrix assignment is also needed, which is ($\sum_{i=0}^{m}O(2^m - 1))^2 = O(m^22^{2m})$ or $O(2^m)$
 
-Remind that we only consider parts of the essential operation, most of the internal operation including indexing, union, intersection and more. Therefore, to create the $\{0, 1\}$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
+Remind that we only consider parts of the essential operation, most of the internal operations including indexing, union, intersection, and more. Therefore, to create the $\{0, 1\}$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
 
-The following figure \ref{costoftime} shows the relation between time of generating matrix $C$ and size controller $m$. An exponential growth is shown as expected.
+The following figure \ref{costoftime} shows the relation between the time of generating matrix $C$ and size controller $m$. An exponential growth is shown as expected.
 
 \begin{figure}[htp]
     \centering
@@ -408,13 +407,13 @@ The following figure \ref{costoftime} shows the relation between time of generat
 %   4 Conclusion   %
 %%%%%%%%%%%%%%%%%
 \section{Conclusion}
-This report shows the $\{0, 1\}$ matrix $C$ created with speacific steps to ensure it's equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it's is expensive to create when the order of $C$ grows.
+This report shows the $\{0, 1\}$ matrix $C$ created with specific steps to ensure its equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it is expensive to create when the order of $C$ grows.
 
 %%%%%%%%%%%%%%%%%
 %   5 Acknowledgements   %
 %%%%%%%%%%%%%%%%%
 \section{Acknowledgements}
-I would like to thank Antoine Deza, my supervisor, for many helpful discussions and advice. Also I would like to thank Zhongyuan Liu and Yijun Ma for many helpful suggestions.
+I would like to thank Antoine Deza, my supervisor, for many helpful discussions and advice. Also, I would like to thank Zhongyuan Liu and Yijun Ma for many helpful suggestions.
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%
