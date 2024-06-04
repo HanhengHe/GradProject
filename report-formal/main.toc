@@ -9,4 +9,5 @@
 \contentsline {subsection}{\numberline {3.1}Time Complexity of Creating $\Omega $}{6}{}%
 \contentsline {subsection}{\numberline {3.2}Time Complexity of Creating $\{0, 1\}$ Matrix $C$}{7}{}%
 \contentsline {section}{\numberline {4}Conclusion}{8}{}%
-\contentsline {section}{\numberline {5}Acknowledgements}{8}{}%
+\contentsline {section}{\numberline {5}Acknowledgements}{9}{}%
+\contentsline {section}{Appendices}{11}{}%

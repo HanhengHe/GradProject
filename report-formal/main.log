@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.13)  4 JUN 2024 00:03
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.13)  4 JUN 2024 01:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -464,62 +464,65 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 375.
+(amsmath)                 on input line 377.
 
 [7]
 <fig/output.png, id=43, 422.7795pt x 314.3745pt>
 File: fig/output.png Graphic file (type png)
 <use fig/output.png>
-Package pdftex.def Info: fig/output.png  used on input line 402.
+Package pdftex.def Info: fig/output.png  used on input line 404.
 (pdftex.def)             Requested size: 422.77846pt x 314.37372pt.
- [8 <./fig/output.png>] (./main.bbl) [9]
-<fig/codeofimp.png, id=53, 2545.51pt x 14941.8225pt>
+ [8 <./fig/output.png>] [9] (./main.bbl) [10]
+<fig/codeofimp.png, id=56, 2545.51pt x 14941.8225pt>
 File: fig/codeofimp.png Graphic file (type png)
 <use fig/codeofimp.png>
-Package pdftex.def Info: fig/codeofimp.png  used on input line 429.
+Package pdftex.def Info: fig/codeofimp.png  used on input line 435.
 (pdftex.def)             Requested size: 2545.50381pt x 14941.78629pt.
 File: fig/codeofimp.png Graphic file (type png)
 <use fig/codeofimp.png>
-Package pdftex.def Info: fig/codeofimp.png  used on input line 430.
+Package pdftex.def Info: fig/codeofimp.png  used on input line 436.
 (pdftex.def)             Requested size: 2545.50381pt x 14941.78629pt.
 File: fig/codeofimp.png Graphic file (type png)
 <use fig/codeofimp.png>
-Package pdftex.def Info: fig/codeofimp.png  used on input line 431.
+Package pdftex.def Info: fig/codeofimp.png  used on input line 437.
 (pdftex.def)             Requested size: 2545.50381pt x 14941.78629pt.
 File: fig/codeofimp.png Graphic file (type png)
 <use fig/codeofimp.png>
-Package pdftex.def Info: fig/codeofimp.png  used on input line 432.
+Package pdftex.def Info: fig/codeofimp.png  used on input line 438.
 (pdftex.def)             Requested size: 2545.50381pt x 14941.78629pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 429--433
+Underfull \hbox (badness 10000) in paragraph at lines 435--440
 
  []
 
-[10 <./fig/codeofimp.png>]
+
+Overfull \vbox (23.23972pt too high) has occurred while \output is active []
+
+ [11 <./fig/codeofimp.png>]
 Overfull \vbox (10.37195pt too high) has occurred while \output is active []
 
- [11]
+ [12]
 Overfull \vbox (10.37195pt too high) has occurred while \output is active []
 
- [12] [13] (./main.aux)
+ [13] [14] (./main.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-04-11>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 11072 strings out of 474050
- 178436 string characters out of 5739222
+ 11081 strings out of 474050
+ 178652 string characters out of 5739222
  1999754 words of memory out of 5000000
- 33316 multiletter control sequences out of 15000+600000
- 570155 words of font info for 83 fonts, out of 8000000 for 9000
+ 33325 multiletter control sequences out of 15000+600000
+ 570761 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,16n,131p,767b,1818s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (13 pages, 1757983 bytes).
+Output written on main.pdf (14 pages, 1761126 bytes).
 PDF statistics:
- 147 PDF objects out of 1000 (max. 8388607)
- 89 compressed objects within 1 object stream
+ 150 PDF objects out of 1000 (max. 8388607)
+ 91 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 

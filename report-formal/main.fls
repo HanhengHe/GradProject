@@ -229,6 +229,8 @@ INPUT ./main.bbl
 INPUT ./main.bbl
 INPUT main.bbl
 INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
+INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmr17.tfm
+INPUT c:/Program Files/texlive/2024/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 INPUT ./fig/codeofimp.png
 INPUT ./fig/codeofimp.png
 INPUT ./fig/codeofimp.png

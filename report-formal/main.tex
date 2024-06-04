@@ -7,7 +7,7 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
-\usepackage{appendix}
+\usepackage[toc,title,page]{appendix}
 \usepackage{algorithm,algpseudocode}
 \usepackage[export]{adjustbox}
 \usepackage{subcaption}
@@ -357,7 +357,9 @@ With the result above, We can observe that as order $r$ grows, $\chi(C)$ grows r
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
 \subsection{Time Complexity of Creating $\Omega$}
-In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code, we assume that we have enough memory and focus on the time complexity.
+With a well-defined task of creating the matrix $C$, a further discussion can be approached with its final goal of proofing the limit of an algorithm. The field of mathematical models and techniques for demonstrating such proofs is named computational complexity \cite{10.5555/1074100.1074233}. Since the computational complexity of a sequence is to be measured by how fast a multitap Turing machine can work out on the sequence \cite{hartmanis1965computational}, many researchers have studied computational complexity for a long time, such as \cite{papadimitriou2003computational}, \cite{du2011theory} and \cite{cook2007overview}.
+
+In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code on a modern machine, we assume that we have enough memory and focus on the time complexity.
 
 To generate set $\Omega$, every time we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element larger than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideal time complexity is $O(n)$, which cannot be reached but is still used.
 
@@ -425,10 +427,15 @@ I would like to thank Antoine Deza, my supervisor, for many helpful discussions 
 
 \newpage
 \appendix
-\subsection*{Code of Implementation}
+\renewcommand{\thesection}{\Alph{section}.\arabic{section}}
+\setcounter{section}{0}
+
+\begin{appendices}
+\section*{Code of Implementation}
 \adjincludegraphics[width=15cm,trim={0 {.763\height} 0 0},clip]{fig/codeofimp.png}\\
 \adjincludegraphics[width=15cm,trim={0 {.504\height} 0 {.237\height}},clip]{fig/codeofimp.png}\\
 \adjincludegraphics[width=15cm,trim={0 {.245\height} 0 {.496\height}},clip]{fig/codeofimp.png}\\
 \adjincludegraphics[width=15cm,trim={0 {.0\height} 0 {.755\height}},clip]{fig/codeofimp.png}\\
+\end{appendices}
 
 \end{document}

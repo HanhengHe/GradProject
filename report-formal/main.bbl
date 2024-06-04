@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{ALON1997133}
 Noga Alon and Văn~H Vũ.
@@ -29,5 +29,30 @@ R.L. Graham and N.J.A. Sloane.
 Johan H\r{a}stad.
 \newblock On the size of weights for threshold gates.
 \newblock {\em SIAM Journal on Discrete Mathematics}, 7(3):484--492, 1994.
+
+\bibitem{10.5555/1074100.1074233}
+Christos~H. Papadimitriou.
+\newblock {\em Computational complexity}, page 260–265.
+\newblock John Wiley and Sons Ltd., GBR, 2003.
+
+\bibitem{hartmanis1965computational}
+Juris Hartmanis and Richard~E Stearns.
+\newblock On the computational complexity of algorithms.
+\newblock {\em Transactions of the American Mathematical Society}, 117:285--306, 1965.
+
+\bibitem{papadimitriou2003computational}
+Christos~H Papadimitriou.
+\newblock Computational complexity.
+\newblock In {\em Encyclopedia of computer science}, pages 260--265. 2003.
+
+\bibitem{du2011theory}
+Ding-Zhu Du and Ker-I Ko.
+\newblock {\em Theory of computational complexity}, volume~58.
+\newblock John Wiley \& Sons, 2011.
+
+\bibitem{cook2007overview}
+Stephen~A Cook.
+\newblock An overview of computational complexity.
+\newblock {\em ACM Turing award lectures}, page 1982, 2007.
 
 \end{thebibliography}
