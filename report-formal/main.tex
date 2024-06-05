@@ -72,7 +72,7 @@
 %   Abstract   %
 %%%%%%%%%%%%%%%%
 \begin{abstract}
-    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix is specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
+    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix are specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
 \end{abstract}
 \tableofcontents
 
@@ -86,20 +86,19 @@
 
 Let matrix $A \in \mathbb{R}^{n\times n}$ be an invertible matrix, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when the right-hand side is changed \cite{ALON1997133}. If $c(A)$ is large, then $A$ is called $ill-conditioned$.
 
-With such an important property of $condition\ number$, ill-conditioned matrices are important
-in numerical algebra, and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they call $anti-Hadamard$ matrices, with is of interest in linear algebra, objects in combinatorics and related areas. With such conditions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
+With such an important property of $condition\ number$, ill-conditioned matrices are important in numerical algebra and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they call $anti-Hadamard$ matrices and is of interest in linear algebra, combinatorics and related areas. With such restrictions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
 \begin{align*}
-\chi(A) = max_{i, j}|b_{ij}|\ and\ \chi(n) = max_A \chi(A),
+\chi(A) = max_{i, j}|b_{ij}|\ and\ \chi(n) = max_A \chi(A).
 \end{align*}
-which is bounded controlled by $n$ and some absolute positive constant $c$. Meanwhile, since matrix $A$ only contains $0$ and $1$, it also stands for a 0/1-polytope space, which is of great interest in geometry.
+Shown in \cite{GRAHAM1984113}, we have $c(2.274)^n \leq \chi(n) \leq 2(n/4)^{n/2}$ for some absolute positive constant $c$, which means $\chi(A)$ is bounded controlled by $n$ and $c$. Meanwhile, since matrix $A$ is a square matrix and only contains $0$ and $1$, it also stands for a 0/1-polytope space, which is of great interest in geometry.
 
 In this report, we aim to construct an ill-conditioned $(0, 1)$ matrix $C$ satisfied
 \begin{align*}
 \chi(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}.
 \end{align*}
-That is said, matrix $C$ has a controlled lower bound of it's $condition\ number$ with respect to $n$. 
+Hence, matrix $C$ has a controlled lower bound of its $condition\ number$ concerning $n$. 
 
-As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a matrix $C$ with its condition number controlled.
+Following the steps in \cite{ALON1997133}, we started by generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a $(0, 1)$ matrix $C$ with its condition number controlled.
 
 
 
@@ -113,7 +112,7 @@ As is shown in \cite{ALON1997133}, we started from generating matrix $A \in \mat
 %   2.1 Generate Set $\Omega$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate Set $\Omega$}
-To start constructing matrix $C$ with a controlled $condition\ number$, the set $\Omega$ with special restriction is necessary. Let $|\cdot|$ denotes cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with a restriction that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to be existed, the only thing considering is the implementational way create such kind of set. The following description shows and implemented way.
+To start constructing matrix $C$ with a controlled $condition\ number$, the set $\Omega$ with special restriction is necessary. Let $|\cdot|$ denote cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with a restriction that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to exist, and we will further discuss the implementational way to create such kind of set. The following description shows an implemented way.
 
 Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering that every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existing set $\{1\}$, we insert elements one by one $2, 3, ..., m$ by order.
 
@@ -125,7 +124,7 @@ and insert only one element each time. Make sure conditions are satisfied betwee
     2. {1, _} and {2, _}, {2, _} and {3, _}, ...
 \end{lstlisting}
 
-For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert elements in order or in reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list or the first element of the reverted list must be in $\alpha$.
+For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert elements in order or reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list or the first element of the reverted list must be in $\alpha$.
 
 The following pseudo-code shows the way to generate $\Omega$: 
 
