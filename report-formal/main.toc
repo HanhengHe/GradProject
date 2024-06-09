@@ -7,7 +7,7 @@
 \contentsline {subsection}{\numberline {2.4}Generate and Verify Ill-conditioned Matrix $C$}{6}{}%
 \contentsline {section}{\numberline {3}Complexity Analysis of Generating Matrix $C$}{6}{}%
 \contentsline {subsection}{\numberline {3.1}Time Complexity of Creating $\Omega $}{6}{}%
-\contentsline {subsection}{\numberline {3.2}Time Complexity of Creating $\{0, 1\}$ Matrix $C$}{7}{}%
+\contentsline {subsection}{\numberline {3.2}Time Complexity of Creating $(0, 1)$ Matrix $C$}{7}{}%
 \contentsline {section}{\numberline {4}Conclusion}{8}{}%
 \contentsline {section}{\numberline {5}Acknowledgements}{9}{}%
 \contentsline {section}{Appendices}{11}{}%

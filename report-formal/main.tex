@@ -72,7 +72,7 @@
 %   Abstract   %
 %%%%%%%%%%%%%%%%
 \begin{abstract}
-    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix are specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $\{0, 1\}$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $\{0, 1\}$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
+    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix are specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $(0, 1)$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $(0, 1)$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
 \end{abstract}
 \tableofcontents
 
@@ -96,9 +96,9 @@ In this report, we aim to construct an ill-conditioned $(0, 1)$ matrix $C$ satis
 \begin{align*}
 \chi(C) \geq2^{\frac{1}{2}n\log n-n(2+o(1))}.
 \end{align*}
-Hence, matrix $C$ has a controlled lower bound of its $condition\ number$ concerning $n$. 
+Hence, matrix $C$ has a controlled infimum of its $condition\ number$ concerning $n$. 
 
-Following the steps in \cite{ALON1997133}, we started by generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a $(0, 1)$ matrix $C$ with its condition number controlled.
+Following the steps in \cite{ALON1997133}, we started by generating matrix $A \in \mathcal{A}_n^2$, and we generate $B \in \mathcal{A}_n^1$ based on $A$. Using a series of matrix $B$ with different shapes, we can further concatenate a $(0, 1)$ matrix $C$ with its controlled infimum of condition number.
 
 
 
@@ -112,19 +112,18 @@ Following the steps in \cite{ALON1997133}, we started by generating matrix $A \i
 %   2.1 Generate Set $\Omega$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate Set $\Omega$}
-To start constructing matrix $C$ with a controlled $condition\ number$, the set $\Omega$ with special restriction is necessary. Let $|\cdot|$ denote cardinality and $\Delta$ denote symmetric different. Let $m\in \mathbb{Z}^{+}$, $n=2^m$, set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with a restriction that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to exist, and we will further discuss the implementational way to create such kind of set. The following description shows an implemented way.
+To start constructing matrix $C$ with a controlled infimum of $condition\ number$, a set $\Omega$ with special restrictions is required. Let $|\cdot|$ denote cardinality and $\Delta$ denote symmetric different, let $m\in \mathbb{Z}^{+}$, $n=2^m$. Set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ with $n + 1$ elements is required to create with restrictions that $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$. Shown in \cite{doi:10.1137/S0895480192235878}, $\Omega$ is proved to exist, and we further discuss the implementational way to create such kind of set. The following description shows an implemented way.
 
-Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering that every time we only take out all the sets with maximum size in $\Omega$, and insert only one element inside by order. That is, for an existing set $\{1\}$, we insert elements one by one $2, 3, ..., m$ by order.
+Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering that every time we only take out all the sets of maximum size in $\Omega$, and insert only one element inside in order. For example, for an existing set $\{1\}$, we insert elements one by one $2, 3, ..., m$ in order, and get a series of sets $\{1, 2\}, \{1, 3\}, ..., \{1, m\}$.
 
-With this way of insertion, we only need to consider if the conditions are satisfied between the last old set and the first new set, and if the continuous new sets come from different old sets. For all the sets that come from the same old set, the conditions are satisfied automatically.
+With such way of insertion, we only need to consider if the conditions are satisfied between the last old set and the first new set, and if the continuous new sets come from different old sets. For all the sets that come from the same old set, the conditions are satisfied automatically.
 \begin{lstlisting}
-Initially Omega = {{}, {}, {1}, {2}, ..., {m}}, take {1}, {2}, ..., {m} out, 
-and insert only one element each time. Make sure conditions are satisfied between
+Initially Omega = {{}, {}, {1}, {2}, ..., {m}}, insert only one element each time on {1}, {2}, ..., {m} in order. Make sure conditions are satisfied between:
     1. {m} and {1, _}; 
     2. {1, _} and {2, _}, {2, _} and {3, _}, ...
 \end{lstlisting}
 
-For the first case above, the only element we can insert is $m$, which is the first element if we revert the ordered insertion. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element we wish; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert elements in order or reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list or the first element of the reverted list must be in $\alpha$.
+For the first case above, the only element we can insert to $\{1, \_\}$ is $m$, which is the first element if we revert the ordered insertion $2, 3, ..., m$. For the second case, let's say we have set $\alpha$ with size $k$ and $\beta$ with size $k-1$, if $\alpha \cup \beta = \alpha$, we can insert any element; if $\alpha \cup \beta \neq \alpha$, we can only insert an element $r \in \alpha$. Since we always insert elements in order or reversed order, if the first element of the insertion list is not in $\alpha$, the last element of the insertion list or the first of the reverted list must be in $\alpha$.
 
 The following pseudo-code shows the way to generate $\Omega$: 
 
@@ -143,7 +142,7 @@ The following pseudo-code shows the way to generate $\Omega$:
                     \State {$\alpha$ $\gets$ $\alpha$.reverse()}
                 \EndIf
                 \For{$a$ in $\alpha$}     
-                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{$\phi...$ means extend set $\phi$}
+                    \State {$\Omega$ $\gets$ \{$\Omega$.., \{$\phi$.., $a$\}\}} \Comment{$\phi..$ means extend set $\phi$}
                 \EndFor
             \EndFor
         \EndFor
@@ -153,10 +152,10 @@ The following pseudo-code shows the way to generate $\Omega$:
 
 when $m=4$, set $\Omega$ is shown below:
 \begin{lstlisting}
-Omega = {set(), set(), {1}, {2}, {3}, {4}, 
-        {1, 4}, {1, 3}, {1, 2}, {2, 4}, {2, 3}, 
-        {3, 4}, {1, 3, 4}, {1, 2, 3}, {1, 2, 4}, 
-        {2, 3, 4}, {1, 2, 3, 4}}
+Omega = {{}, {}, {1}, {2}, {3}, {4}, 
+        {1, 4}, {1, 3}, {1, 2}, {2, 4}, {2, 3}, {3, 4}, 
+        {1, 3, 4}, {1, 2, 3}, {1, 2, 4}, {2, 3, 4}, 
+        {1, 2, 3, 4}}
 \end{lstlisting}
 
 
@@ -164,18 +163,18 @@ Omega = {set(), set(), {1}, {2}, {3}, {4},
 %   2.2 Generate Matrix $A \in \mathcal{A}_n^2$
 %%%%%%%%%%%%%%%%%
 \subsection{Construct Matrix $A \in \mathcal{A}_n^2$ with Set $\Omega$}
-Shown in \cite{ALON1997133}, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A$ can be constructed as follows such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$:\\
+Shown in \cite{ALON1997133}, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A \in \mathcal{A}_n^2$ can be constructed as follows such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$:\\
 For every $1 \leq i,j \leq n$:
 \begin{align*}
     a_{ij} = 
     \begin{cases}
-    -1,\;\alpha_j\bigcap(\alpha_{i-1}\bigcup\alpha_i)=\alpha_{i-1}\Delta\alpha_{i}\;and\;|\alpha_{i-1}\Delta\alpha_{i}|=2 \\
-    (-1)^{|\alpha_{i-1}\bigcap\alpha_j| + 1},\;\alpha_{j}\bigcap(\alpha_{i-1}\bigcup\alpha_{i})\neq\varnothing\;but\;does\;not\;meet\;the\;condition\;above \\
-    1,\;\alpha_j\bigcap(\alpha_{i-1}\bigcup\alpha_i)=\varnothing \\
+    -1,\;\alpha_j\cap(\alpha_{i-1}\cup\alpha_i)=\alpha_{i-1}\Delta\alpha_{i}\;and\;|\alpha_{i-1}\Delta\alpha_{i}|=2 \\
+    (-1)^{|\alpha_{i-1}\cap\alpha_j| + 1},\;\alpha_{j}\cap(\alpha_{i-1}\cup\alpha_{i})\neq\varnothing\;but\;does\;not\;meet\;the\;condition\;above \\
+    1,\;\alpha_j\cap(\alpha_{i-1}\cup\alpha_i)=\varnothing \\
     \end{cases}.
 \end{align*}
 
-With the $\Omega$ shown in section 2.1, matrix $A \in \mathcal{A}_n^2$ constructed is shown below:
+With the $\Omega$ constructed shown in section 2.1, matrix $A \in \mathcal{A}_n^2$ is shown below:
 
 $$A = 
 \left[\begin{smallmatrix}
@@ -198,7 +197,7 @@ $$A =
 \end{smallmatrix}\right].
 $$
 
-In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\bigcap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we build a matrix $A$ and show $L = AQ^{-1}$ is a lower triangular matrix.
+In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\cap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we show $L = AQ^{-1}$ is a lower triangular matrix.
 
 With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
 $$Q=
@@ -268,27 +267,27 @@ $$
 %   2.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 %%%%%%%%%%%%%%%%%
 \subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}
-With matrix $A \in \mathcal{A}_n^2$, $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$ being constructed, a mapping can be implemented to generate a matrix $A \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
+With matrix $A \in \mathcal{A}_n^2$ being constructed, a mapping can be implemented to generate a matrix $B \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
 -1^T_{n-1} & 2B-J_{n-1}
 \end{array}\right).
 $$
 
-We can see that $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations. Therefore, we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
+Clearly $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations, so we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
 
 $$B = \frac{1}{2}(J_{n-1}+\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-Notice that in the above section, the $A \in \mathcal{A}_n^2$ we constructed has it's first column as:
+Notice that in the above section, the $A \in \mathcal{A}_n^2$ we constructed has it's first column as
 $$ \left(\begin{array}{cc} 
 1\\
 1^T_{n-1}
 \end{array}\right).
 $$
-Therefore,  we need to negative the first column and have the relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ in the implementation shown as follows:    
+Therefore,  we need to negative the first column. The relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ is shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-With the matrix $A \in \mathcal{A}_n^2$ constructed above, a constructed matrix $B$ is shown below:
+With the matrix $A \in \mathcal{A}_n^2$ constructed above, the corresponding matrix $B$ is shown below:
 
 $$B=
 \left[\begin{smallmatrix}
@@ -310,7 +309,7 @@ $$B=
 \end{smallmatrix}\right].
 $$
 
-Shown in \cite{ALON1997133}, matrix $B$ preserves the ill-conditions property, that is $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$.
+Shown in \cite{ALON1997133}, matrix $B$ preserves the property of its condition number, that is $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$.
 
 %%%%%%%%%%%%%%%%%
 %   2.4 Generate and Verify Ill-conditioned Matrix $C$
@@ -336,11 +335,11 @@ It's shown that $R$ has the following property:
 \chi(S \diamond T) \geq \chi(S)\chi(S),
 \end{align*}
 
-Which shows an increased $condition\ number$ leading to the construction of the ill-conditioned $C$. Consider the $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$, with the definition of the operator $\diamond$, we have the following conclusion that
-$$\chi(C)\geq \prod_{i=1}^r\chi(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$$
-This conclusion describes the lower bound of $\chi(C)$, and we can say matrix $C$ is ill-conditioned concerning $n$.
+which shows an infimum of the condition number when constructing of the ill-conditioned $C$. Consider a $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$. With the definition of the operator $\diamond$, we have the following conclusion that
+$$\chi(C)\geq \prod_{i=1}^r\chi(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}.$$
+This conclusion describes the infimum of $\chi(C)$, and it is evidently that matrix $C$ is ill-conditioned concerning $n$.
 
-Since the concatenation rapidly enlarges the order of the matrix, we could not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show some results of $\chi(C)$ with $C$ generated in the same steps above. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the biggest order of all the $\{0, 1\}$ matrices $A$:
+Since the concatenation rapidly enlarges the order of the matrix, we can not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show the result of $\chi(C)$ with different values of $n$. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the largest order of all the $(0, 1)$ matrices $A$:
 
 \begin{lstlisting}[escapeinside={(*}{*)}]
 r = 2, order of C = 4, (*$\chi$*)(C) = 1.0
@@ -349,7 +348,7 @@ r = 4, order of C = 26, (*$\chi$*)(C) = 260.0
 r = 5, order of C = 57, (*$\chi$*)(C) = 106491641548.6
 \end{lstlisting}
 
-With the result above, We can observe that as order $r$ grows, $\chi(C)$ grows rapidly to infinity.
+With the result above, we can observe that as order $r$ grows, $\chi(C)$ grows rapidly, and may go to infinity.
 
 %%%%%%%%%%%%%%%%%
 %   3 Complexity of Generating Matrix $C$
@@ -387,14 +386,14 @@ A more detailed complexity analysis is shown below. In the implementation, there
     \end{algorithmic}
 \end{algorithm}
 
-\subsection{Time Complexity of Creating $\{0, 1\}$ Matrix $C$}
+\subsection{Time Complexity of Creating $(0, 1)$ Matrix $C$}
 To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set  $\Omega$, $n=2^m$ be the order of matrix $A$, without considering the complexity of set indexing, the union operation, and the intersection operation needed in every single calculation, the ideal time complexity of construct a matrix $A \in \mathcal{A}_n^2$ is at least $O(m) + O(2^{2m}) = O(2^m)$.
 
 Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operation. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
 
 To splice out matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$. With matrix $A_r$ with order $r$ having $O(r^2)$ time complexity, to create all these matrices, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$. An extra time complexity of matrix assignment is also needed, which is ($\sum_{i=0}^{m}O(2^m - 1))^2 = O(m^22^{2m})$ or $O(2^m)$
 
-Remind that we only consider parts of the essential operation, most of the internal operations including indexing, union, intersection, and more. Therefore, to create the $\{0, 1\}$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
+Remind that we only consider parts of the essential operation, most of the internal operations including indexing, union, intersection, and more. Therefore, to create the $(0, 1)$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
 
 The following figure \ref{costoftime} shows the relation between the time of generating matrix $C$ and size controller $m$. An exponential growth is shown as expected.
 
@@ -408,7 +407,7 @@ The following figure \ref{costoftime} shows the relation between the time of gen
 %   4 Conclusion   %
 %%%%%%%%%%%%%%%%%
 \section{Conclusion}
-This report shows the $\{0, 1\}$ matrix $C$ created with specific steps to ensure its equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it is expensive to create when the order of $C$ grows.
+This report shows the $(0, 1)$ matrix $C$ created with specific steps to ensure its equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it is expensive to create when the order of $C$ grows.
 
 %%%%%%%%%%%%%%%%%
 %   5 Acknowledgements   %
