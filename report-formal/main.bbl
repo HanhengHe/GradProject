@@ -30,15 +30,15 @@ Johan H\r{a}stad.
 \newblock On the size of weights for threshold gates.
 \newblock {\em SIAM Journal on Discrete Mathematics}, 7(3):484--492, 1994.
 
-\bibitem{10.5555/1074100.1074233}
-Christos~H. Papadimitriou.
-\newblock {\em Computational complexity}, page 260–265.
-\newblock John Wiley and Sons Ltd., GBR, 2003.
-
 \bibitem{hartmanis1965computational}
 Juris Hartmanis and Richard~E Stearns.
 \newblock On the computational complexity of algorithms.
 \newblock {\em Transactions of the American Mathematical Society}, 117:285--306, 1965.
+
+\bibitem{10.5555/1074100.1074233}
+Christos~H. Papadimitriou.
+\newblock {\em Computational complexity}, page 260–265.
+\newblock John Wiley and Sons Ltd., GBR, 2003.
 
 \bibitem{papadimitriou2003computational}
 Christos~H Papadimitriou.
@@ -54,5 +54,10 @@ Ding-Zhu Du and Ker-I Ko.
 Stephen~A Cook.
 \newblock An overview of computational complexity.
 \newblock {\em ACM Turing award lectures}, page 1982, 2007.
+
+\bibitem{doi:10.1137/S0097539791218202}
+Pekka Kilpel\"{a}inen and Heikki Mannila.
+\newblock Ordered and unordered tree inclusion.
+\newblock {\em SIAM Journal on Computing}, 24(2):340--356, 1995.
 
 \end{thebibliography}

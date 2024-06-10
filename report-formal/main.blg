@@ -4,45 +4,45 @@ The top-level auxiliary file: main.aux
 The style file: unsrt.bst
 Database file #1: references.bib
 Warning--empty publisher in papadimitriou2003computational
-You've used 11 entries,
+You've used 12 entries,
             1791 wiz_defined-function locations,
-            524 strings with 5034 characters,
-and the built_in function-call counts, 2717 in all, are:
-= -- 271
-> -- 64
+            531 strings with 5183 characters,
+and the built_in function-call counts, 2947 in all, are:
+= -- 292
+> -- 72
 < -- 4
-+ -- 27
-- -- 16
-* -- 155
-:= -- 395
-add.period$ -- 34
-call.type$ -- 11
-change.case$ -- 9
++ -- 30
+- -- 18
+* -- 173
+:= -- 431
+add.period$ -- 37
+call.type$ -- 12
+change.case$ -- 10
 chr.to.int$ -- 0
-cite$ -- 12
-duplicate$ -- 143
-empty$ -- 276
-format.name$ -- 16
-if$ -- 640
+cite$ -- 13
+duplicate$ -- 152
+empty$ -- 300
+format.name$ -- 18
+if$ -- 692
 int.to.chr$ -- 0
-int.to.str$ -- 11
-missing$ -- 13
-newline$ -- 58
-num.names$ -- 11
-pop$ -- 31
+int.to.str$ -- 12
+missing$ -- 14
+newline$ -- 63
+num.names$ -- 12
+pop$ -- 32
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 85
+skip$ -- 89
 stack$ -- 0
-substring$ -- 217
-swap$ -- 49
+substring$ -- 238
+swap$ -- 50
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 26
-width$ -- 13
-write$ -- 124
+while$ -- 28
+width$ -- 14
+write$ -- 135
 (There was 1 warning)

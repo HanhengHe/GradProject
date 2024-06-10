@@ -12,6 +12,8 @@
 \usepackage[export]{adjustbox}
 \usepackage{subcaption}
 \usepackage{caption}
+\usepackage{hyperref}
+
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
@@ -355,13 +357,11 @@ With the result above, we can observe that as order $r$ grows, $\chi(C)$ grows r
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
 \subsection{Time Complexity of Creating $\Omega$}
-With a well-defined task of creating the matrix $C$, a further discussion can be approached with its final goal of proofing the limit of an algorithm. The field of mathematical models and techniques for demonstrating such proofs is named computational complexity \cite{10.5555/1074100.1074233}. Since the computational complexity of a sequence is to be measured by how fast a multitap Turing machine can work out on the sequence \cite{hartmanis1965computational}, many researchers have studied computational complexity for a long time, such as \cite{papadimitriou2003computational}, \cite{du2011theory} and \cite{cook2007overview}.
+With a well-defined task of creating the matrix $C$, a further discussion can be approached with its final goal of proofing the limit of an algorithm, and such a field of mathematical models and techniques for demonstrating such proofs is named computational complexity analysis. Since the computational complexity of a sequence is to be measured by how fast a multitap Turing machine can work out on the sequence\cite{hartmanis1965computational}, many researchers have studied computational complexity for a long time, such as \cite{10.5555/1074100.1074233}, \cite{papadimitriou2003computational}, \cite{du2011theory} and \cite{cook2007overview}.
 
-In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code on a modern machine, we assume that we have enough memory and focus on the time complexity.
+In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code on a modern machine, we assume that we have enough memory and focus on the time complexity. Also, we discuss average time complexity and refer it as time complexity.
 
-To generate set $\Omega$, every time we only need to take out one generated set and insert one new element inside. The insertion operation is $O(\log n)$, but notice that we always insert an element larger than the maximum of a set, we can consider it an $O(1)$, without considering the maintenance of the internal tree data structure. Therefore, the most ideal time complexity is $O(n)$, which cannot be reached but is still used.
-
-A more detailed complexity analysis is shown below. In the implementation, there are 2 for-loop with $O(m)$ and at least $O(m)$ time complexity. With all the assignments, set insertion, set reversion operation, and an extra for-loop neglected, a rough time complexity estimation would be $O(m^2)$.
+Let $m$ be our input parameter. To generate set $\Omega$, we take out one set each time and insert one new element inside. The insertion operation can be considered as $O(\log r)$\cite{doi:10.1137/S0097539791218202}, including tree data structure insertion and rebalancing. We also need to take out sets in $\Omega$ with maximum size, but it can be optimized by puting all these set in a data structure when created, which leads to an $O(1)$ time complexity. At the same time, there are 2 for-loop, one with $O(m)$ and the other includes an $combination$ with at least $O(m)$ time complexity. A set reversion is also included, and we can use an reversed iterator to save our time with a $O(1)$ time complexity. As shown below, with all the assignments, set insertion, set reversion operation, and an extra for-loop, a rough time complexity estimation would be $O(m^2)$.
 
 \begin{algorithm}[H] 
     \caption{Time Complexity of Generating $\Omega$}
@@ -369,13 +369,13 @@ A more detailed complexity analysis is shown below. In the implementation, there
     \begin{algorithmic}[1]
     \Require{$m$} 
     \Ensure{$\Omega$}
-      \State {$\Omega$ $\gets$ $\{\{\}, \{\}, \{1\}, \{2\}, ..., \{m\}\}$}
+      \State {$\Omega$ $\gets$ $\{\{\}, \{\}, \{1\}, \{2\}, ..., \{m\}\}$} \Comment{$O(1)$ assignment}
         \For{$i \gets 1$ to $m-1$} \Comment{$O(m)$ loop}
             \State {$\Phi$ $\gets$ $sets\ in\ \Omega\ with\ size\ equals\ i$} \Comment{$O(1)$ with special data structure}         
             \For{$\phi$ in $\Phi$} \Comment{${m \choose i} \rightarrow$ at least $O(m)$}
                 \State {$\alpha$ $\gets$ [max($\phi$) + 1, ..., m]} \Comment{the max(...) of an ordered set is $O(1)$}
-                \If{$\alpha$ not in $\Omega$[-1]}:
-                    \State {$\alpha$ $\gets$ $\alpha$.reverse()} \Comment{a set reversion operation}
+                \If{$\alpha$ not in $\Omega$[-1]}: \Comment{$O(1)$ set visiting}
+                    \State {$\alpha$ $\gets$ $\alpha$.reverse()} \Comment{$O(1)$ with reversed iterator}
                 \EndIf
                 \For{$a$ in $\alpha$} \Comment{$m - $max$(\phi) - 1$, more than $O(1)$}
                     \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{a set insertion operation}
@@ -387,27 +387,29 @@ A more detailed complexity analysis is shown below. In the implementation, there
 \end{algorithm}
 
 \subsection{Time Complexity of Creating $(0, 1)$ Matrix $C$}
-To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set  $\Omega$, $n=2^m$ be the order of matrix $A$, without considering the complexity of set indexing, the union operation, and the intersection operation needed in every single calculation, the ideal time complexity of construct a matrix $A \in \mathcal{A}_n^2$ is at least $O(m) + O(2^{2m}) = O(2^m)$.
+This section discusse the time complexity of creating the matrix $C$ with an already-constructed $\Omega$. In our implementation, we use \href{https://www.python.org/}{Python} and package \href{https://numpy.org/}{NumPy} for the steps, and hence our discussion is based on it.
 
-Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operation. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
+To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set $\Omega$, $n=2^m$ be the order of matrix $A$, the time complexity of visiting is $O(2^{2m}) = O(2^m)$. Shown in \url{https://wiki.python.org/moin/TimeComplexity}, the union operation time complexity is $O(s)$ with $s$ stands for the sum of two sets, and the intersection operation time complexity is $O(min(len(s), len(t)))$ with $s$ and $t$ stand for the size of two sets. Since they are linear time complexity and less than $O(m)$, we skip them in our analysis and get the ideal time complexity constructing a matrix $A \in \mathcal{A}_n^2$ of at least $O(2^m)$.
 
-To splice out matrix $C$, we need a series of matrix $A_1$, $A_2$, ... , $A_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$. With matrix $A_r$ with order $r$ having $O(r^2)$ time complexity, to create all these matrices, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$. An extra time complexity of matrix assignment is also needed, which is ($\sum_{i=0}^{m}O(2^m - 1))^2 = O(m^22^{2m})$ or $O(2^m)$
+Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operations. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
 
-Remind that we only consider parts of the essential operation, most of the internal operations including indexing, union, intersection, and more. Therefore, to create the $(0, 1)$ Matrix $C$, we need an exponential time complexity; when $m$ grows, the time required to generate matrix $C$ grows exponentially.
+To concatenate matrix $C$, a series of matrix $B_1$, $B_2$, ... , $B_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$ are needed. The main complexity of this part is assigning values into an all-zero matrix. Therefore, with matrix $B_r$ of order $r$ having $O(r^2)$ time complexity of assignment, to create matrix $C$, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$.
 
-The following figure \ref{costoftime} shows the relation between the time of generating matrix $C$ and size controller $m$. An exponential growth is shown as expected.
+In conclusion, to create the $(0, 1)$ Matrix $C$, we need an exponential time complexity. When $m$ grows, the time required to generate matrix $C$ grows exponentially.
+
+The following figure \ref{costoftime} shows the result of an experiment, describing the relation between the time of generating matrix $C$ and size controller $m$. Rapid growth is shown as expected.
 
 \begin{figure}[htp]
     \centering
     \includegraphics{fig/output.png}
-    \caption{Cost of time in milliseconds related to m}\label{costoftime}
+    \caption{Cost of Time in Milliseconds Related to $m$}\label{costoftime}
 \end{figure}
 
 %%%%%%%%%%%%%%%%%
 %   4 Conclusion   %
 %%%%%%%%%%%%%%%%%
 \section{Conclusion}
-This report shows the $(0, 1)$ matrix $C$ created with specific steps to ensure its equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned as it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it is expensive to create when the order of $C$ grows.
+This report shows the $(0, 1)$ matrix $C$ created with specific steps to ensure its equivalent condition number $\chi(C) > 2^{\frac{1}{2}n\log n-n(2+o(1))}$ is ill-conditioned when it's order grows. Also, we prove the exponential time complexity of creating such a matrix, showing that it is expensive to create when the order of $C$ grows.
 
 %%%%%%%%%%%%%%%%%
 %   5 Acknowledgements   %
