@@ -74,7 +74,7 @@
 %   Abstract   %
 %%%%%%%%%%%%%%%%
 \begin{abstract}
-    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix are specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $(0, 1)$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $(0, 1)$ matrix becomes more ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing with an experiment the exponential time complexity.
+    This report describes the condition number of a matrix, and an equivalent quantity to the condition number when entries of the matrix are specified as $\{0, 1\}$ or $\{-1, 1\}$. Based on this, the implementation of creating an $(0, 1)$ matrix is demonstrated, and the equivalent condition number is provided, showing that such kind of $(0, 1)$ matrix becomes ill-conditioned when its order grows. Furthermore, this report discusses the complexity of creating such a matrix, proving and showing exponential time complexity through an experiment.
 \end{abstract}
 \tableofcontents
 
@@ -88,11 +88,11 @@
 
 Let matrix $A \in \mathbb{R}^{n\times n}$ be an invertible matrix, with the $spectral \ norm$ defined as $||A||_s = sup_{x\neq0}|Ax|/|x|$, the $condition\ number$ of $A$ is $c(A) = ||A||_s||A^{-1}||_s$. The $condition\ number$ is a measurement of the sensibility of the equation $Ax = b$ when the right-hand side is changed \cite{ALON1997133}. If $c(A)$ is large, then $A$ is called $ill-conditioned$.
 
-With such an important property of $condition\ number$, ill-conditioned matrices are important in numerical algebra and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into set $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they call $anti-Hadamard$ matrices and is of interest in linear algebra, combinatorics and related areas. With such restrictions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
+With such an important property of $condition\ number$, ill-conditioned matrices are important in numerical algebra and have been studied extensively by various researchers, such as \cite{doi:10.1137/1018113}, \cite{wilkinson1972note} and \cite{neumaier1998solving}. In \cite{GRAHAM1984113}, researchers restricted entries into $\{0, 1\}$ or $\{-1, 1\}$, denoted by $\mathcal{A}_n^1$ or $\mathcal{A}_n^2$, which they called $anti-Hadamard$ matrices and is of interest in linear algebra, combinatorics and related areas. With such restrictions, many quantities are equivalent to the condition number. Let $A$ be a non-singular $(0, 1)$ matrix, $B = A^{-1} = (b_{ij})$, the following quantity as an equivalent condition number is considered in \cite{GRAHAM1984113}:
 \begin{align*}
 \chi(A) = max_{i, j}|b_{ij}|\ and\ \chi(n) = max_A \chi(A).
 \end{align*}
-Shown in \cite{GRAHAM1984113}, we have $c(2.274)^n \leq \chi(n) \leq 2(n/4)^{n/2}$ for some absolute positive constant $c$, which means $\chi(A)$ is bounded controlled by $n$ and $c$. Meanwhile, since matrix $A$ is a square matrix and only contains $0$ and $1$, it also stands for a 0/1-polytope space, which is of great interest in geometry.
+Shown in \cite{GRAHAM1984113}, we have $c(2.274)^n \leq \chi(n) \leq 2(n/4)^{n/2}$ for some absolute positive constant $c$, which means $\chi(A)$ is bounded controlled by $n$ and $c$. Meanwhile, since matrix $A$ is a square matrix and only contains $0$ and $1$, it also stands for 0/1-polytope space, which is of great interest in geometry.
 
 In this report, we aim to construct an ill-conditioned $(0, 1)$ matrix $C$ satisfied
 \begin{align*}
@@ -118,7 +118,7 @@ To start constructing matrix $C$ with a controlled infimum of $condition\ number
 
 Let $\alpha_0=\{\varnothing\}$. We also have $\alpha_1=\{\varnothing\}$. Suppose we have $\Omega = \{\{\varnothing\}, \{\varnothing\}, \{1\}, \{2\}, ..., \{m\}\}$ initially. Considering that every time we only take out all the sets of maximum size in $\Omega$, and insert only one element inside in order. For example, for an existing set $\{1\}$, we insert elements one by one $2, 3, ..., m$ in order, and get a series of sets $\{1, 2\}, \{1, 3\}, ..., \{1, m\}$.
 
-With such way of insertion, we only need to consider if the conditions are satisfied between the last old set and the first new set, and if the continuous new sets come from different old sets. For all the sets that come from the same old set, the conditions are satisfied automatically.
+With such a way of insertion, we only need to consider if the conditions are satisfied between the last old set and the first new set, and if the continuous new sets come from different old sets. For all the sets that come from the same old set, the conditions are satisfied automatically.
 \begin{lstlisting}
 Initially Omega = {{}, {}, {1}, {2}, ..., {m}}, insert only one element each time on {1}, {2}, ..., {m} in order. Make sure conditions are satisfied between:
     1. {m} and {1, _}; 
@@ -165,7 +165,7 @@ Omega = {{}, {}, {1}, {2}, {3}, {4},
 %   2.2 Generate Matrix $A \in \mathcal{A}_n^2$
 %%%%%%%%%%%%%%%%%
 \subsection{Construct Matrix $A \in \mathcal{A}_n^2$ with Set $\Omega$}
-Shown in \cite{ALON1997133}, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfies $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A \in \mathcal{A}_n^2$ can be constructed as follows such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$:\\
+Shown in \cite{ALON1997133}, with set $\Omega = \{\alpha_0, \alpha_1, \alpha_2, ..., \alpha_n\}$ satisfying $|\alpha_i| \leq |\alpha_{i+1}|$ and $|\alpha_i \Delta \alpha_{i+1}| \leq 2$, matrix $A \in \mathcal{A}_n^2$ can be constructed as follows such that $\chi(A)=2^{\frac{1}{2}n\log n-n(1+o(1))}$:\\
 For every $1 \leq i,j \leq n$:
 \begin{align*}
     a_{ij} = 
@@ -199,7 +199,7 @@ $$A =
 \end{smallmatrix}\right].
 $$
 
-In \cite{ALON1997133}, researchers further discussed some properties of the $\{-1, 1\}$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\cap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we show $L = AQ^{-1}$ is a lower triangular matrix.
+In \cite{ALON1997133}, researchers further discussed some properties of the $(-1, 1)$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\cap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we show $L = AQ^{-1}$ is a lower triangular matrix.
 
 With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
 $$Q=
@@ -269,7 +269,7 @@ $$
 %   2.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 %%%%%%%%%%%%%%%%%
 \subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}
-With matrix $A \in \mathcal{A}_n^2$ being constructed, a mapping can be implemented to generate a matrix $B \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
+With matrix $A \in \mathcal{A}_n^2$ being constructed, a mapping can be implemented to generate a matrix $B \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$\cite{ALON1997133}. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
 -1^T_{n-1} & 2B-J_{n-1}
@@ -289,7 +289,7 @@ $$
 Therefore,  we need to negative the first column. The relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ is shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-With the matrix $A \in \mathcal{A}_n^2$ constructed above, the corresponding matrix $B$ is shown below:
+With the matrix $A \in \mathcal{A}_n^2$ constructed above, the corresponding matrix $B$ is 
 
 $$B=
 \left[\begin{smallmatrix}
@@ -317,7 +317,7 @@ Shown in \cite{ALON1997133}, matrix $B$ preserves the property of its condition 
 %   2.4 Generate and Verify Ill-conditioned Matrix $C$
 %%%%%%%%%%%%%%%%%
 \subsection{Generate and Verify Ill-conditioned Matrix $C$}
-Before constructing matrix $C$, \cite{ALON1997133} shows a way of concatenating that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $S \diamond T$ as follows:
+Before constructing matrix $C$, \cite{ALON1997133} shows a way of concatenation that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $R = S \diamond T$ as
 $$R=
 \left[\begin{smallmatrix}
     s_{11} & \dots & s_{1n_1} & 0 & \dots  & 0 \\
@@ -331,17 +331,17 @@ $$R=
 \end{smallmatrix}\right].
 $$
 
-It's shown that $R$ has the following property:
+It's also shown that $R$ satisfies
 
 \begin{align*}
-\chi(S \diamond T) \geq \chi(S)\chi(S),
+\chi(S \diamond T) \geq \chi(S)\chi(S).
 \end{align*}
 
-which shows an infimum of the condition number when constructing of the ill-conditioned $C$. Consider a $(0, 1)$ matrix $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$ with order $\sum_{i=1}^rn_i=n$. With the definition of the operator $\diamond$, we have the following conclusion that
-$$\chi(C)\geq \prod_{i=1}^r\chi(A_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}.$$
+Consider a $(0, 1)$ matrix $C = B_1 \diamond (B_2 \diamond (. . . (B_{r-1} \diamond B_r))...)$ with order $\sum_{i=1}^rn_i=n$. With the definition of the operator $\diamond$, we have the conclusion that
+$$\chi(C)\geq \prod_{i=1}^r\chi(B_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}.$$
 This conclusion describes the infimum of $\chi(C)$, and it is evidently that matrix $C$ is ill-conditioned concerning $n$.
 
-Since the concatenation rapidly enlarges the order of the matrix, we can not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show the result of $\chi(C)$ with different values of $n$. Remind that $C = A_1 \diamond (A_2 \diamond (. . . (A_{r-1} \diamond A_r))...)$, where $r$ is the largest order of all the $(0, 1)$ matrices $A$:
+Since the concatenation rapidly enlarges the order of the matrix, we can not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show the results of $\chi(C)$ with different values of $n$. Remind that $C = B_1 \diamond (B_2 \diamond (. . . (B_{r-1} \diamond B_r))...)$, where $r$ is the largest order of all the $(0, 1)$ matrices $A$. The results is shown below:
 
 \begin{lstlisting}[escapeinside={(*}{*)}]
 r = 2, order of C = 4, (*$\chi$*)(C) = 1.0
@@ -357,11 +357,11 @@ With the result above, we can observe that as order $r$ grows, $\chi(C)$ grows r
 %%%%%%%%%%%%%%%%%
 \section{Complexity Analysis of Generating Matrix $C$}
 \subsection{Time Complexity of Creating $\Omega$}
-With a well-defined task of creating the matrix $C$, a further discussion can be approached with its final goal of proofing the limit of an algorithm, and such a field of mathematical models and techniques for demonstrating such proofs is named computational complexity analysis. Since the computational complexity of a sequence is to be measured by how fast a multitap Turing machine can work out on the sequence\cite{hartmanis1965computational}, many researchers have studied computational complexity for a long time, such as \cite{10.5555/1074100.1074233}, \cite{papadimitriou2003computational}, \cite{du2011theory} and \cite{cook2007overview}.
+With a well-defined task of creating the matrix $C$, a further discussion can be approached aiming to prove the limit of an algorithm, and such a field of mathematical models and techniques for demonstrating the proving is named computational complexity analysis. Since the computational complexity of a sequence is to be measured by how fast a multitap Turing machine can work out on the sequence\cite{hartmanis1965computational}, many researchers have studied computational complexity for a long time, such as \cite{10.5555/1074100.1074233}, \cite{papadimitriou2003computational}, \cite{du2011theory} and \cite{cook2007overview}.
 
-In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code on a modern machine, we assume that we have enough memory and focus on the time complexity. Also, we discuss average time complexity and refer it as time complexity.
+In this section, we discuss the complexity of constructing matrix $C$ and further show the reason for not being able to generate matrix $C$ with large $r$. Since we go through all these steps with code on a modern machine, we assume that we have enough memory and focus on the time complexity. Also, we only discuss average time complexity and refer to it as time complexity.
 
-Let $m$ be our input parameter. To generate set $\Omega$, we take out one set each time and insert one new element inside. The insertion operation can be considered as $O(\log r)$\cite{doi:10.1137/S0097539791218202}, including tree data structure insertion and rebalancing. We also need to take out sets in $\Omega$ with maximum size, but it can be optimized by puting all these set in a data structure when created, which leads to an $O(1)$ time complexity. At the same time, there are 2 for-loop, one with $O(m)$ and the other includes an $combination$ with at least $O(m)$ time complexity. A set reversion is also included, and we can use an reversed iterator to save our time with a $O(1)$ time complexity. As shown below, with all the assignments, set insertion, set reversion operation, and an extra for-loop, a rough time complexity estimation would be $O(m^2)$.
+Let $m$ be our input parameter. To generate set $\Omega$, we take out one set each time and insert one element inside. The insertion operation can be considered as $O(\log r)$\cite{doi:10.1137/S0097539791218202} including tree data structure insertion and rebalancing, with $r$ stands for the size of the set. However, since we always insert the largest element, we can handle it as a list data structure which leads to an $O(1)$ ideally, and we will use the $O(1)$ for an easy estimation. We also need to take out sets in $\Omega$ with maximum size, but this can be optimized by putting all these sets with the same size in a data structure when created, which leads to an $O(1)$ time complexity. At the same time, there are 2 for-loop, one with $O(m)$ and the other includes an $combination$ with at least $O(m)$ time complexity. A set reversion is also included, and we can use a reversed iterator to save our time with a $O(1)$ time complexity. As shown below, with all the assignments, set insertion, set reversion operation, and an extra for-loop, a rough time complexity estimation would be $O(1) + O(m) \times (6 \times O(1) + O(m)) = O(m^2)$.
 
 \begin{algorithm}[H] 
     \caption{Time Complexity of Generating $\Omega$}
@@ -378,7 +378,7 @@ Let $m$ be our input parameter. To generate set $\Omega$, we take out one set ea
                     \State {$\alpha$ $\gets$ $\alpha$.reverse()} \Comment{$O(1)$ with reversed iterator}
                 \EndIf
                 \For{$a$ in $\alpha$} \Comment{$m - $max$(\phi) - 1$, more than $O(1)$}
-                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{a set insertion operation}
+                    \State {$\Omega$ $\gets$ \{$\Omega$..., \{$\phi$..., $a$\}\}} \Comment{set insertion considered as $O(1)$}
                 \EndFor
             \EndFor
         \EndFor
@@ -387,11 +387,11 @@ Let $m$ be our input parameter. To generate set $\Omega$, we take out one set ea
 \end{algorithm}
 
 \subsection{Time Complexity of Creating $(0, 1)$ Matrix $C$}
-This section discusse the time complexity of creating the matrix $C$ with an already-constructed $\Omega$. In our implementation, we use \href{https://www.python.org/}{Python} and package \href{https://numpy.org/}{NumPy} for the steps, and hence our discussion is based on it.
+This section discusses the time complexity of creating the matrix $C$ with a constructed $\Omega$. In our implementation, we use \href{https://www.python.org/}{Python} and package \href{https://numpy.org/}{NumPy} for the steps, and hence our discussion is based on them.
 
 To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set $\Omega$, $n=2^m$ be the order of matrix $A$, the time complexity of visiting is $O(2^{2m}) = O(2^m)$. Shown in \url{https://wiki.python.org/moin/TimeComplexity}, the union operation time complexity is $O(s)$ with $s$ stands for the sum of two sets, and the intersection operation time complexity is $O(min(len(s), len(t)))$ with $s$ and $t$ stand for the size of two sets. Since they are linear time complexity and less than $O(m)$, we skip them in our analysis and get the ideal time complexity constructing a matrix $A \in \mathcal{A}_n^2$ of at least $O(2^m)$.
 
-Generating matrix $B\in \mathcal{A}_{n - 1}^1$ required simple matrix operations. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
+Generating matrix $B\in \mathcal{A}_{n - 1}^1$ requires simple matrix operations. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
 
 To concatenate matrix $C$, a series of matrix $B_1$, $B_2$, ... , $B_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$ are needed. The main complexity of this part is assigning values into an all-zero matrix. Therefore, with matrix $B_r$ of order $r$ having $O(r^2)$ time complexity of assignment, to create matrix $C$, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$.
 

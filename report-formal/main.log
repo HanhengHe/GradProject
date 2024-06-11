@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.13)  9 JUN 2024 22:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.13)  11 JUN 2024 02:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -706,13 +706,13 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 389.
 
 [7]
-<fig/output.png, id=164, 422.7795pt x 314.3745pt>
+<fig/output.png, id=165, 422.7795pt x 314.3745pt>
 File: fig/output.png Graphic file (type png)
 <use fig/output.png>
 Package pdftex.def Info: fig/output.png  used on input line 404.
 (pdftex.def)             Requested size: 422.77846pt x 314.37372pt.
  [8 <./fig/output.png>] [9] (./main.bbl) [10]
-<fig/codeofimp.png, id=182, 2545.51pt x 14941.8225pt>
+<fig/codeofimp.png, id=183, 2545.51pt x 14941.8225pt>
 File: fig/codeofimp.png Graphic file (type png)
 <use fig/codeofimp.png>
 Package pdftex.def Info: fig/codeofimp.png  used on input line 435.
@@ -754,16 +754,16 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  17196 strings out of 474050
  272711 string characters out of 5739222
- 1999754 words of memory out of 5000000
+ 2000754 words of memory out of 5000000
  39312 multiletter control sequences out of 15000+600000
  570929 words of font info for 86 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 83i,16n,131p,964b,2058s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 83i,16n,131p,1246b,2058s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb><c:/Program Files/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on main.pdf (14 pages, 1759471 bytes).
+Output written on main.pdf (14 pages, 1759619 bytes).
 PDF statistics:
- 293 PDF objects out of 1000 (max. 8388607)
- 234 compressed objects within 3 object streams
+ 294 PDF objects out of 1000 (max. 8388607)
+ 235 compressed objects within 3 object streams
  59 named destinations out of 1000 (max. 500000)
  107 words of extra memory for PDF output out of 10000 (max. 10000000)
 
