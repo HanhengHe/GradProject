@@ -176,9 +176,9 @@ For every $1 \leq i,j \leq n$:
     \end{cases}.
 \end{align*}
 
-With the $\Omega$ constructed shown in section 2.1, matrix $A \in \mathcal{A}_n^2$ is shown below:
+With $m = 4$ and the $\Omega$ constructed shown in section 2.1, matrix $A_{16} \in \mathcal{A}_{16}^2$ is shown below:
 
-$$A = 
+$$A_{16} = 
 \left[\begin{smallmatrix}
     1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
     1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & 1  & 1  & -1 & -1 & -1 & 1  & -1 \\
@@ -201,8 +201,8 @@ $$
 
 In \cite{ALON1997133}, researchers further discussed some properties of the $(-1, 1)$ matrix. Let symmetric Hadamard matrix $Q$ be an $n$ by $n$ matrix given by $q_{ij} = (-1)^{|\alpha_i\cap\alpha_j|}$, that is $Q^2 = nI_n$. There existed a lower triangular matrix $L$ built by $\Omega$ satisfying $A=LQ$. In this report, we show $L = AQ^{-1}$ is a lower triangular matrix.
 
-With matrix $A$ shown above, matrix $Q$ and $L$ is shown below:
-$$Q=
+With matrix $A_{16}$ shown above, matrix $Q_{16}$ and $L_{16}$ are shown below:
+$$Q_{16}=
 \left[\begin{smallmatrix}
     1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 &  \\
     1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 \\
@@ -223,7 +223,7 @@ $$Q=
 \end{smallmatrix}\right],
 $$
 
-$$Q\times Q = 
+$$Q_{16} \times Q_{16} = 16 \times I_{16} = 
 \left[\begin{smallmatrix}
     16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
     0 & 16 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
@@ -244,7 +244,7 @@ $$Q\times Q =
 \end{smallmatrix}\right],
 $$
 
-$$L=
+$$L_{16}=
 \left[\begin{smallmatrix}
     1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
     0.0 & 1.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 & 0.0 \\
@@ -268,7 +268,7 @@ $$
 %%%%%%%%%%%%%%%%%
 %   2.3 Generate Matrix $B \in \mathcal{A}_{n - 1}^1$
 %%%%%%%%%%%%%%%%%
-\subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}
+\subsection{Mapping Matrix $A \in \mathcal{A}_n^2$ to $B \in \mathcal{A}_{n - 1}^1$}\label{section2.3}
 With matrix $A \in \mathcal{A}_n^2$ being constructed, a mapping can be implemented to generate a matrix $B \in \mathcal{A}_{n-1}^{1}$ such that $\chi(B)=2^{\frac{1}{2}n\log n-n(1+o(1))}$\cite{ALON1997133}. Consider the map $\Phi$ which assigns to any matrix $B \in \mathcal{A}_{n - 1}^1$ a matrix $\Phi(B) \in \mathcal{A}_{n}^2$ in the following way:
 $$ \Phi(B) = \left(\begin{array}{cc} 
 1 & 1_{n-1}\\
@@ -276,11 +276,11 @@ $$ \Phi(B) = \left(\begin{array}{cc}
 \end{array}\right).
 $$
 
-Clearly $\Phi(B)$ is a mapping $\mathcal{A}_n^2 \to \mathcal{A}_{n - 1}^1$ with a series of linear operations, so we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
+Clearly $\Phi(B)$ is a mapping $\mathcal{A}_{n - 1}^1 \to \mathcal{A}_n^2$ with a series of linear operations, so we have the following reversing way to construct matrix $B \in \mathcal{A}_{n - 1}^1$ with $A=\{a_{ij}\}\in \mathcal{A}_n^2$:
 
 $$B = \frac{1}{2}(J_{n-1}+\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-Notice that in the above section, the $A \in \mathcal{A}_n^2$ we constructed has it's first column as
+Notice based on the set $\Omega$ described previously, the $A \in \mathcal{A}_n^2$ we constructed has its first column as
 $$ \left(\begin{array}{cc} 
 1\\
 1^T_{n-1}
@@ -289,9 +289,9 @@ $$
 Therefore,  we need to negative the first column. The relation between matrix $B \in \mathcal{A}_{n - 1}^1$ and $A \in \mathcal{A}_n^2$ is shown as follows:    
 $$B = \frac{1}{2}(J_{n-1}-\{a_{ij}\}_{2\le i\le n, 2\le j\le n}).$$
 
-With the matrix $A \in \mathcal{A}_n^2$ constructed above, the corresponding matrix $B$ is 
+With the matrix $A_{16} \in \mathcal{A}_{16}^2$ constructed above, the corresponding matrix $B_{15}$ is 
 
-$$B=
+$$B_{15}=
 \left[\begin{smallmatrix}
     1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
     0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
@@ -316,7 +316,7 @@ Shown in \cite{ALON1997133}, matrix $B$ preserves the property of its condition 
 %%%%%%%%%%%%%%%%%
 %   2.4 Generate and Verify Ill-conditioned Matrix $C$
 %%%%%%%%%%%%%%%%%
-\subsection{Generate and Verify Ill-conditioned Matrix $C$}
+\subsection{Generate and Verify Ill-conditioned Matrix $C$}\label{section2.4}
 Before constructing matrix $C$, \cite{ALON1997133} shows a way of concatenation that has a special property. Let $S$ and $T$ be two non-singular matrices of order $n_1$ and $n_2$. Define $R = S \diamond T$ as
 $$R=
 \left[\begin{smallmatrix}
@@ -337,20 +337,33 @@ It's also shown that $R$ satisfies
 \chi(S \diamond T) \geq \chi(S)\chi(S).
 \end{align*}
 
-Consider a $(0, 1)$ matrix $C = B_1 \diamond (B_2 \diamond (. . . (B_{r-1} \diamond B_r))...)$ with order $\sum_{i=1}^rn_i=n$. With the definition of the operator $\diamond$, we have the conclusion that
-$$\chi(C)\geq \prod_{i=1}^r\chi(B_i) > 2^{\frac{1}{2}n\log n-n(2+o(1))}.$$
+Let $n = \sum_{i=1}^m 2^{i} - 1$, let $n_i = 2^{i} - 1$. With $B_i$ be an ill-conditioned matrix of order $n_i$ constructed in \hyperref[section2.3]{subsection 2.3} satisfying $\chi(B_i)=2^{\frac{1}{2}n_i\log n_i-n(1+o(1))}$. Consider a $(0, 1)$ matrix $C_n = B_1 \diamond (B_2 \diamond (. . . (B_{m-1} \diamond B_m))...)$ with order $\sum_{i=1}^m n_i =n$. With the definition of the operator $\diamond$ and the discussion in \cite{ALON1997133}, we have the conclusion that
+$$\chi(C)\geq \prod_{i=1}^m\chi(B_{i}) = 2^{\sum_{i=1}^m \frac{1}{2}n_i \log n_i - \sum_{i=1}^{m}n_i(1+o(1))} > 2^{\frac{1}{2}n\log n-n(2+o(1))}.$$
 This conclusion describes the infimum of $\chi(C)$, and it is evidently that matrix $C$ is ill-conditioned concerning $n$.
 
-Since the concatenation rapidly enlarges the order of the matrix, we can not show the matrix $C$ constructed with all the steps described in previous sections. Instead, we show the results of $\chi(C)$ with different values of $n$. Remind that $C = B_1 \diamond (B_2 \diamond (. . . (B_{r-1} \diamond B_r))...)$, where $r$ is the largest order of all the $(0, 1)$ matrices $A$. The results is shown below:
+Since the concatenation rapidly enlarges the order of the matrix, we place the matrix $C$ constructed with $m = 4$ in the \hyperref[appe:matrix_c]{appendix}. We also clarify the relation between $m$ and $n$, the order of $C$ in the \hyperref[appe:clarifynm]{appendix}. 
 
-\begin{lstlisting}[escapeinside={(*}{*)}]
-r = 2, order of C = 4, (*$\chi$*)(C) = 1.0
-r = 3, order of C = 11, (*$\chi$*)(C) = 2.0
-r = 4, order of C = 26, (*$\chi$*)(C) = 260.0
-r = 5, order of C = 57, (*$\chi$*)(C) = 106491641548.6
-\end{lstlisting}
+We show the results of $2^{\frac{1}{2}n\log n-2n}$ and $\chi(C)$ with different values of $m$ in \hyperref[table:1]{Table 1} below.
 
-With the result above, we can observe that as order $r$ grows, $\chi(C)$ grows rapidly, and may go to infinity.
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{||c c c c||} 
+     \hline
+     $m$ & $n$ & $2^{\frac{1}{2}n\log n-2n}$ & $\chi(C)$ \\ [0.5ex] 
+     \hline\hline
+     2 & 4 & 0.0625 & 1 \\ 
+     3 & 11 & 0.1274 & 2 \\
+     4 & 26 & 550.9266 & 260 \\
+     5 & 57 & 5.3090e+15 & 1.0649e+10 \\ 
+     6 & 120 & 3.1892e+52 & 7.1862e+24 \\ 
+     7 & 247 & 6.1554e+146 & 8.9814e+37 \\ [1ex]
+     \hline
+    \end{tabular}
+    \caption{Results with Different Values of $m$}
+    \label{table:1}
+\end{table}
+
+With the result above, we can observe that as parameter $m$ and order $n$ grows, $\chi(C)$ grows rapidly, and may go to infinity.
 
 %%%%%%%%%%%%%%%%%
 %   3 Complexity of Generating Matrix $C$
@@ -397,7 +410,7 @@ To concatenate matrix $C$, a series of matrix $B_1$, $B_2$, ... , $B_n$ with ord
 
 In conclusion, to create the $(0, 1)$ Matrix $C$, we need an exponential time complexity. When $m$ grows, the time required to generate matrix $C$ grows exponentially.
 
-The following figure \ref{costoftime} shows the result of an experiment, describing the relation between the time of generating matrix $C$ and size controller $m$. Rapid growth is shown as expected.
+In \hyperref[costoftime]{Figure 1}, we show the result of an experiment, describing the relation between the time of generating matrix $C$ and size controller $m$. Rapid growth is shown as expected.
 
 \begin{figure}[htp]
     \centering
@@ -431,11 +444,156 @@ I would like to thank Antoine Deza, my supervisor, for many helpful discussions 
 \setcounter{section}{0}
 
 \begin{appendices}
+\section*{Clarification of Relation between $m$ and $n$}\label{appe:clarifynm}
+In \hyperref[section2.4]{section 2.4}, matrix $C_n$ is concatenated with a series of matrices $B_1$, $B_2$, ..., $B_{m-1}$, $B_{m}$, with $B_i$ stands for matrix with order $n_i = 2^i - 1$, $n = \sum_{i=1}^{m}n_i$. Let $N(k)$ denote value of $n$ when $m=k$, clearly we have $n = \sum_{i=1}^{m}n_i = \sum_{i=1}^{m - 1}n_i + n_m = N(m-1) + 2^m - 1$. We clarify the relation between $m$ and $n$ shown in \hyperref[table:1]{Table 1}.
+
+When $m = 2$, $N(2) = 2^1 - 1 + 2^2 - 1 = 4$.\\
+When $m = 3$, $N(3) = N(2) + 2^3 - 1 = 4 + 7 = 11$.\\
+When $m = 4$, $N(4) = N(3) + 2^4 - 1 = 11 + 15 = 26$.\\
+When $m = 5$, $N(5) = N(4) + 2^5 - 1 = 26 + 31 = 57$.\\
+When $m = 6$, $N(6) = N(5) + 2^6 - 1 = 57 + 63 = 120$.\\
+When $m = 7$, $N(7) = N(6) + 2^7 - 1 = 120 + 127 = 247$.\\
+
+\newpage
+\section*{Matrix $C$ with $m=4$}\label{appe:matrix_c}
+Remind that with $m=4$, set $\Omega$ is
+\begin{lstlisting}
+Omega = {{}, {}, {1}, {2}, {3}, {4}, 
+        {1, 4}, {1, 3}, {1, 2}, {2, 4}, {2, 3}, {3, 4}, 
+        {1, 3, 4}, {1, 2, 3}, {1, 2, 4}, {2, 3, 4}, 
+        {1, 2, 3, 4}}
+\end{lstlisting}
+
+Shown in \hyperref[section2.4]{section 2.4}, constructing matrix $C$ needs a series of matrices $A_2$, $A_4$, $A_8$, $A_{16}$, and the corresponding $B_1$, $B_3$, $B_7$, $B_{15}$. We show all these matrices below.
+
+$$
+A_2=
+\left[\begin{smallmatrix}
+1 & 1 \\
+1 & -1 \\
+\end{smallmatrix}\right],
+B_1=
+\left[\begin{smallmatrix}
+1 \\
+\end{smallmatrix}\right];
+A_4=
+\left[\begin{smallmatrix}
+1 & 1 & 1 & 1 \\
+1 & -1 & 1 & -1 \\
+1 & 1 & -1 & -1 \\
+1 & -1 & 1 & 1 \\
+\end{smallmatrix}\right],
+B_3=
+\left[\begin{smallmatrix}
+1 & 0 & 1 \\
+0 & 1 & 1 \\
+1 & 0 & 0 \\
+\end{smallmatrix}\right];
+$$
+$$
+A_8=
+\left[\begin{smallmatrix}
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 \\
+1 & 1 & -1 & 1 & 1 & -1 & -1 & -1 \\
+1 & 1 & 1 & -1 & -1 & 1 & -1 & -1 \\
+1 & -1 & 1 & 1 & 1 & -1 & 1 & 1 \\
+1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 \\
+1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 \\
+1 & -1 & 1 & 1 & 1 & 1 & -1 & -1 \\
+\end{smallmatrix}\right],
+B_7=
+\left[\begin{smallmatrix}
+1 & 0 & 0 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 1 & 0 & 1 & 1 \\
+1 & 0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 1 & 0 & 1 & 0 & 1 & 1 \\
+0 & 0 & 1 & 1 & 1 & 0 & 1 \\
+1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+\end{smallmatrix}\right];
+$$
+$$
+A_{16}=
+\left[\begin{smallmatrix}
+1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 & 1 \\
+1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 \\
+1 & 1 & -1 & 1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+1 & 1 & 1 & -1 & 1 & 1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 & -1 \\
+1 & 1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 & -1 \\
+1 & -1 & 1 & 1 & 1 & 1 & -1 & -1 & 1 & 1 & 1 & 1 & -1 & 1 & 1 & 1 \\
+1 & 1 & 1 & -1 & 1 & -1 & 1 & 1 & 1 & -1 & -1 & -1 & 1 & -1 & -1 & -1 \\
+1 & 1 & -1 & 1 & 1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 \\
+1 & 1 & 1 & 1 & -1 & -1 & 1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 & 1 & -1 \\
+1 & 1 & 1 & -1 & 1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 & -1 \\
+1 & 1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 & -1 & -1 \\
+1 & -1 & 1 & 1 & 1 & 1 & 1 & -1 & 1 & 1 & -1 & -1 & 1 & 1 & -1 & -1 \\
+1 & 1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 & 1 & -1 & 1 & -1 & -1 & -1 & 1 \\
+1 & 1 & 1 & 1 & -1 & 1 & -1 & -1 & 1 & -1 & -1 & -1 & 1 & -1 & -1 & 1 \\
+1 & 1 & 1 & -1 & 1 & -1 & -1 & -1 & -1 & 1 & 1 & -1 & -1 & 1 & -1 & 1 \\
+1 & -1 & 1 & 1 & 1 & 1 & 1 & 1 & -1 & -1 & -1 & -1 & -1 & -1 & 1 & 1 \\
+\end{smallmatrix}\right],
+B_{15}=
+\left[\begin{smallmatrix}
+1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\
+0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 0 \\
+0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\
+0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\
+\end{smallmatrix}\right].
+$$
+
+The concatenated matrix $C_{26}$ is 
+$$C_{26}=
+B_1\diamond (B_3\diamond (B_7\diamond B_{15})) = 
+\left[\begin{smallmatrix}
+    1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 0 & 0 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 0 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 0 & 1 & 1 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 1 & 1 & 1 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 1 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 \\ 
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 1 & 0 & 0 \\ 
+\end{smallmatrix}\right].
+$$
+
+\newpage
 \section*{Code of Implementation}
-\adjincludegraphics[width=15cm,trim={0 {.763\height} 0 0},clip]{fig/codeofimp.png}\\
-\adjincludegraphics[width=15cm,trim={0 {.504\height} 0 {.237\height}},clip]{fig/codeofimp.png}\\
-\adjincludegraphics[width=15cm,trim={0 {.245\height} 0 {.496\height}},clip]{fig/codeofimp.png}\\
-\adjincludegraphics[width=15cm,trim={0 {.0\height} 0 {.755\height}},clip]{fig/codeofimp.png}\\
+Also shown in \url{https://github.com/HanhengHe/GradProject}.\\
+\adjincludegraphics[width=15cm,trim={0 {.803\height} 0 {.0\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.565\height} 0 {.197\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.338\height} 0 {.435\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.1318\height} 0 {.662\height}},clip]{fig/codeofimp.png}\\
+\adjincludegraphics[width=15cm,trim={0 {.0\height} 0 {.868\height}},clip]{fig/codeofimp.png}\\
 \end{appendices}
 
 \end{document}

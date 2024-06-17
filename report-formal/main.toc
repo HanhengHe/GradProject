@@ -5,9 +5,9 @@
 \contentsline {subsection}{\numberline {2.2}Construct Matrix $A \in \mathcal {A}_n^2$ with Set $\Omega $}{3}{subsection.2.2}%
 \contentsline {subsection}{\numberline {2.3}Mapping Matrix $A \in \mathcal {A}_n^2$ to $B \in \mathcal {A}_{n - 1}^1$}{5}{subsection.2.3}%
 \contentsline {subsection}{\numberline {2.4}Generate and Verify Ill-conditioned Matrix $C$}{6}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Complexity Analysis of Generating Matrix $C$}{6}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Time Complexity of Creating $\Omega $}{6}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Time Complexity of Creating $(0, 1)$ Matrix $C$}{7}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Conclusion}{9}{section.4}%
-\contentsline {section}{\numberline {5}Acknowledgements}{9}{section.5}%
-\contentsline {section}{Appendices}{11}{section*.4}%
+\contentsline {section}{\numberline {3}Complexity Analysis of Generating Matrix $C$}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Time Complexity of Creating $\Omega $}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Time Complexity of Creating $(0, 1)$ Matrix $C$}{8}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Conclusion}{8}{section.4}%
+\contentsline {section}{\numberline {5}Acknowledgements}{8}{section.5}%
+\contentsline {section}{Appendices}{11}{section*.5}%
