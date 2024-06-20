@@ -354,7 +354,7 @@ We show the results of $2^{\frac{1}{2}n\log n-2n}$ and $\chi(C)$ with different 
      2 & 4 & 0.0625 & 1 \\ 
      3 & 11 & 0.1274 & 2 \\
      4 & 26 & 550.9266 & 260 \\
-     5 & 57 & 5.3090e+15 & 1.0649e+10 \\ 
+     5 & 57 & 5.3090e+15 & 1.0649e+11 \\ 
      6 & 120 & 3.1892e+52 & 7.1862e+24 \\ 
      7 & 247 & 6.1554e+146 & 8.9814e+37 \\ [1ex]
      \hline
@@ -402,11 +402,11 @@ Let $m$ be our input parameter. To generate set $\Omega$, we take out one set ea
 \subsection{Time Complexity of Creating $(0, 1)$ Matrix $C$}
 This section discusses the time complexity of creating the matrix $C$ with a constructed $\Omega$. In our implementation, we use \href{https://www.python.org/}{Python} and package \href{https://numpy.org/}{NumPy} for the steps, and hence our discussion is based on them.
 
-To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set $\Omega$, $n=2^m$ be the order of matrix $A$, the time complexity of visiting is $O(2^{2m}) = O(2^m)$. Shown in \url{https://wiki.python.org/moin/TimeComplexity}, the union operation time complexity is $O(s)$ with $s$ stands for the sum of two sets, and the intersection operation time complexity is $O(min(len(s), len(t)))$ with $s$ and $t$ stand for the size of two sets. Since they are linear time complexity and less than $O(m)$, we skip them in our analysis and get the ideal time complexity constructing a matrix $A \in \mathcal{A}_n^2$ of at least $O(2^m)$.
+To generate every entry of matrix $A \in \mathcal{A}_n^2$, visits of all elements in $A$ are necessary. Let $m$ stand for the size of set $\Omega$, $n=2^m$ be the order of matrix $A$, the time complexity of visiting is $O(2^{2m}) = O(4^m)$. Shown in \url{https://wiki.python.org/moin/TimeComplexity}, the union operation time complexity is $O(s)$ with $s$ stands for the sum of two sets, and the intersection operation time complexity is $O(min(len(s), len(t)))$ with $s$ and $t$ stand for the size of two sets. Since they are linear time complexity and less than $O(m)$, we skip them in our analysis and get the ideal time complexity constructing a matrix $A \in \mathcal{A}_n^2$ of at least $O(4^m)$.
 
-Generating matrix $B\in \mathcal{A}_{n - 1}^1$ requires simple matrix operations. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(2^m)$.
+Generating matrix $B\in \mathcal{A}_{n - 1}^1$ requires simple matrix operations. Let $n - 1$ be the order of $B$, the time complexity of this part is $O((n-1)^2) = O(n^2) = O(4^m)$.
 
-To concatenate matrix $C$, a series of matrix $B_1$, $B_2$, ... , $B_n$ with orders $2^1-1, 2^2-1, ..., 2^m-1$ are needed. The main complexity of this part is assigning values into an all-zero matrix. Therefore, with matrix $B_r$ of order $r$ having $O(r^2)$ time complexity of assignment, to create matrix $C$, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m2^m) = O(2^m)$.
+To concatenate matrix $C$, a series of matrix $B_1$, $B_2$, ... , $B_m$ with orders $2^1-1, 2^2-1, ..., 2^m-1$ are needed. The main complexity of this part is assigning values into an all-zero matrix. Therefore, with a matrix of order $r$ having $O(r^2)$ time complexity of assignment, to create matrix $C$, we can estimate a sum up, that is $\sum_{i=1}^{m}O((2^m - 1)^2) = O(m2^{2m}) = O(m4^m)$.
 
 In conclusion, to create the $(0, 1)$ Matrix $C$, we need an exponential time complexity. When $m$ grows, the time required to generate matrix $C$ grows exponentially.
 
@@ -444,7 +444,7 @@ I would like to thank Antoine Deza, my supervisor, for many helpful discussions 
 \setcounter{section}{0}
 
 \begin{appendices}
-\section*{Clarification of Relation between $m$ and $n$}\label{appe:clarifynm}
+\section*{Clarification of Relation Between $m$ and $n$}\label{appe:clarifynm}
 In \hyperref[section2.4]{section 2.4}, matrix $C_n$ is concatenated with a series of matrices $B_1$, $B_2$, ..., $B_{m-1}$, $B_{m}$, with $B_i$ stands for matrix with order $n_i = 2^i - 1$, $n = \sum_{i=1}^{m}n_i$. Let $N(k)$ denote value of $n$ when $m=k$, clearly we have $n = \sum_{i=1}^{m}n_i = \sum_{i=1}^{m - 1}n_i + n_m = N(m-1) + 2^m - 1$. We clarify the relation between $m$ and $n$ shown in \hyperref[table:1]{Table 1}.
 
 When $m = 2$, $N(2) = 2^1 - 1 + 2^2 - 1 = 4$.\\
