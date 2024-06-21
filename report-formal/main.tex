@@ -445,14 +445,14 @@ I would like to thank Antoine Deza, my supervisor, for many helpful discussions 
 
 \begin{appendices}
 \section*{Clarification of Relation Between $m$ and $n$}\label{appe:clarifynm}
-In \hyperref[section2.4]{section 2.4}, matrix $C_n$ is concatenated with a series of matrices $B_1$, $B_2$, ..., $B_{m-1}$, $B_{m}$, with $B_i$ stands for matrix with order $n_i = 2^i - 1$, $n = \sum_{i=1}^{m}n_i$. Let $N(k)$ denote value of $n$ when $m=k$, clearly we have $n = \sum_{i=1}^{m}n_i = \sum_{i=1}^{m - 1}n_i + n_m = N(m-1) + 2^m - 1$. We clarify the relation between $m$ and $n$ shown in \hyperref[table:1]{Table 1}.
+In \hyperref[section2.4]{section 2.4}, matrix $C_n$ is concatenated with a series of matrices $B_1$, $B_2$, ..., $B_{m-1}$, $B_{m}$, with $B_i$ stands for matrix with order $n_i = 2^i - 1$, $n = \sum_{i=1}^{m}n_i$. Clearly we have $n = \sum_{i=1}^{m}n_i = \sum_{i=1}^{m}(2^i-1) = 2^{m+1} - m - 2$. We clarify the relation between $m$ and $n$ shown in \hyperref[table:1]{Table 1}.
 
-When $m = 2$, $N(2) = 2^1 - 1 + 2^2 - 1 = 4$.\\
-When $m = 3$, $N(3) = N(2) + 2^3 - 1 = 4 + 7 = 11$.\\
-When $m = 4$, $N(4) = N(3) + 2^4 - 1 = 11 + 15 = 26$.\\
-When $m = 5$, $N(5) = N(4) + 2^5 - 1 = 26 + 31 = 57$.\\
-When $m = 6$, $N(6) = N(5) + 2^6 - 1 = 57 + 63 = 120$.\\
-When $m = 7$, $N(7) = N(6) + 2^7 - 1 = 120 + 127 = 247$.\\
+When $m = 2$, $n = 2^3 - 2 - 2 = 4$.\\
+When $m = 3$, $n = 2^4 - 3 - 2 = 11$.\\
+When $m = 4$, $n = 2^5 - 4 - 2 = 26$.\\
+When $m = 5$, $n = 2^6 - 5 - 2 = 57$.\\
+When $m = 6$, $n = 2^7 - 6 - 2 = 120$.\\
+When $m = 7$, $n = 2^8 - 7 - 2 = 247$.\\
 
 \newpage
 \section*{Matrix $C$ with $m=4$}\label{appe:matrix_c}
